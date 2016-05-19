@@ -102,6 +102,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\Search.css" />
+    <Content Include="images\favicon.png" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -129,6 +131,7 @@
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\jquery.js" />
     <Content Include="Producto.aspx" />
+    <Content Include="ProductoCategoria.aspx" />
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="Web.config" />
@@ -155,7 +158,24 @@
     <Compile Include="Producto.aspx.designer.cs">
       <DependentUpon>Producto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ProductoCategoria.aspx.cs">
+      <DependentUpon>ProductoCategoria.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ProductoCategoria.aspx.designer.cs">
+      <DependentUpon>ProductoCategoria.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\upb.tabd.controladora\upb.tabd.controladora.csproj">
+      <Project>{99ec8ee8-98db-4974-ba48-a11fd5955ef8}</Project>
+      <Name>upb.tabd.controladora</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\upb.tabd.entidades\upb.tabd.entidades.csproj">
+      <Project>{fa97cfc5-6fc9-4578-8447-6c8e4bed25a2}</Project>
+      <Name>upb.tabd.entidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

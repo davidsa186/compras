@@ -49,11 +49,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Categorias.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\upb.tabd.broker\upb.tabd.broker.csproj">
+      <Project>{a8c80542-cf6b-488b-9975-57b5b1ee04ef}</Project>
+      <Name>upb.tabd.broker</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\upb.tabd.entidades\upb.tabd.entidades.csproj">
+      <Project>{fa97cfc5-6fc9-4578-8447-6c8e4bed25a2}</Project>
+      <Name>upb.tabd.entidades</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

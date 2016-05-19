@@ -10,10 +10,16 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title></title>
+    <title>JUDAExpress</title>
+
+    <%--Favicon--%>
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Search -->
+    <link href="css/Search.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/shop-homepage.css" rel="stylesheet">
@@ -38,31 +44,35 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
+                    <span class=" icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+
+                <a class="navbar-brand" href="Default.aspx">JUDAExpress</a>
+
+                <%--Mirar como meter un icono--%>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="#">Nosotros</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="#">Servicios</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="#">Contacto</a>
                     </li>
                 </ul>
                 <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search">
+                    <div class="form-group has-feedback">
+                        <label for="search" class="sr-only">Search</label>
+                        <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                        <span class="glyphicon glyphicon-search form-control-feedback"></span>
                     </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
                 </form>
             </div>
             <!-- /.navbar-collapse -->
@@ -76,11 +86,10 @@
         <div class="row">
 
             <div class="col-md-3">
-                <p class="lead">Shop Name</p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item">Category 1</a>
-                    <a href="#" class="list-group-item">Category 2</a>
-                    <a href="#" class="list-group-item">Category 3</a>
+                <p class="lead">Categorias</p>
+                <div class="list-group" id="categoria">
+                    <%--<a href="#" class="list-group-item">Category 1</a>--%>
+
                 </div>
             </div>
 
@@ -110,9 +119,36 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+    <script>
+
+
+        $(document).ready(function () {
+
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/GetCategorias",
+                data: '{id: -1}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                    for (var i = 0; i < response.d.length; i++) {
+                        var categoria = response.d[i].Nombre_Categoria;
+                        var id = response.d[i].Id_Categoria;
+                        $("#categoria").append('<a href="ProductoCategoria.aspx?id='+id+'" class="list-group-item">' + categoria + '</a>');
+                        
+                    }
+
+                },
+                error: function (response) {
+                    //Mostrar un mensaje de error
+                }
+            });
+        });
+
+    </script>
+
     <asp:ContentPlaceHolder ID="script" runat="server">
     </asp:ContentPlaceHolder>
-
-
 </body>
 </html>
