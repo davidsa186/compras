@@ -69,8 +69,8 @@
                 </ul>
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group has-feedback">
-                        <label for="search" class="sr-only">Search</label>
-                        <input type="text" class="form-control" name="search" id="search" placeholder="search">
+                        <label for="search" class="sr-only">Search</label><%--Esto se necesita?--%>
+                        <input type="text" class="form-control" name="search" id="search" placeholder="Buscar">
                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
                     </div>
                 </form>
@@ -120,10 +120,7 @@
     <script src="js/bootstrap.min.js"></script>
 
     <script>
-
-
         $(document).ready(function () {
-
             $.ajax({
                 type: "POST",
                 url: "Default.aspx/GetCategorias",
@@ -135,17 +132,14 @@
                     for (var i = 0; i < response.d.length; i++) {
                         var categoria = response.d[i].Nombre_Categoria;
                         var id = response.d[i].Id_Categoria;
-                        $("#categoria").append('<a href="ProductoCategoria.aspx?id='+id+'" class="list-group-item">' + categoria + '</a>');
-                        
-                    }
-
+                        $("#categoria").append('<a href="ProductoCategoria.aspx?id='+id+'" class="list-group-item">' + categoria + '</a>');                        
+                    }                    
                 },
                 error: function (response) {
                     //Mostrar un mensaje de error
                 }
             });
         });
-
     </script>
 
     <asp:ContentPlaceHolder ID="script" runat="server">
