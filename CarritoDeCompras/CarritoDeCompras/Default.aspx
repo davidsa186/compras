@@ -37,9 +37,9 @@
 
         </div>
 
-        <div class="row">
+        <div class="row" id="index">
 
-            <div class="col-sm-4 col-lg-4 col-md-4">
+            <%--<div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
                     <img src="http://placehold.it/320x150" alt="">
                     <div class="caption">
@@ -154,7 +154,7 @@
                 </h4>
                 <p>If you like this template, then check out <a target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this tutorial</a> on how to build a working review system for your online store!</p>
                 <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
-            </div>
+            </div>--%>
 
         </div>
 
@@ -162,4 +162,32 @@
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="script" runat="server">
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/GetProductos",
+                data: '{id: -1}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                    for (var i = 0; i < response.d.length; i++) {
+                        var div = '<div class="col-sm-4 col-lg-4 col-md-4">';
+                        div += '<div class="thumbnail">';
+                        div += '<img src="http://placehold.it/320x150" alt="">';
+                        div += '<div class="caption">';
+                        div += '<h4 class="pull-right">$' + response.d[i].Precio + '</h4>';
+                        div += '<h4><a href="Producto.aspx?id=' + response.d[i].Id_Producto + '">' + response.d[i].Nombre_Producto +'</a></h4>';
+                        div += '<p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>';
+                        div += '</div></div>';
+                        $("#index").append(div);
+                    }
+                },
+                error: function (response) {
+                    //Mostrar un mensaje de error
+                }
+            });
+        });
+    </script>
 </asp:Content>

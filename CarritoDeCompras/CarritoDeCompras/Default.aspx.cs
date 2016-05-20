@@ -24,5 +24,13 @@ namespace CarritoDeCompras
             return lista;
         }
 
+        [System.Web.Services.WebMethod]
+        public static List<EN.Producto> GetProductos()
+        {
+            CT.Producto controladora = new CT.Producto();
+            var lista = controladora.GetProductoDefault();
+            return lista;
+        }
+
     }
 }

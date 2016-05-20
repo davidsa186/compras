@@ -13,8 +13,8 @@ namespace upb.tabd.entidades
         public int Precio { get; set; }
         public int Stock { get; set; }
         public Categoria Categoria { get; set; }
-
         public Proveedor Proveedor { get; set; }
-
+        public string Imagen { get; set; }
     }
+
 }

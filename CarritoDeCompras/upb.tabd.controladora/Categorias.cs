@@ -14,16 +14,16 @@ namespace upb.tabd.controladora
 
         public List<EN.Categoria> ListaCategorias(int i)
         {
-            
+
             List<EN.Categoria> listado = new List<EN.Categoria>();
             try
             {
 
                 var resultado = from b in db.Categoria
-                                where b.Id_Categoria == i || i ==-1
+                                where b.Id_Categoria == i || i == -1
                                 select new { b.Id_Categoria, b.Nombre_Categoria };
 
-                
+
 
                 foreach (var item in resultado)
                 {
@@ -37,7 +37,6 @@ namespace upb.tabd.controladora
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
 
