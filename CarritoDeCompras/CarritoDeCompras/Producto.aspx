@@ -7,14 +7,18 @@
     <div class="col-md-9">
 
         <div class="thumbnail">
-            <img class="img-responsive" src="http://placehold.it/800x300" alt="">
+            <img class="img-responsive" id="img_producto" alt="">
             <div class="caption-full">
                 <h4 class="pull-right" id="productPrice"></h4>
                 <h4 id="productName"></h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+                <p id="descripcion"></p>
                 <button type="button" class="btn btn-default" aria-label="Añadir al carrito">
                     <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                     <span>Añadir al carrito</span>
+                </button>
+                <button type="button" class="btn btn-default pull-right" aria-label="Añadir a la lista de deseos">
+                    <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+                    <span>Añadir a la lista de deseos</span>
                 </button>
             </div>
             <div class="ratings">
@@ -32,11 +36,11 @@
 
         <div class="well">
 
-            <div class="text-right">
+<%--            <div class="text-right">
                 <a class="btn btn-success">Leave a Review</a>
             </div>
 
-            <hr>
+            <hr>--%>
 
             <div class="row">
                 <div class="col-md-12">
@@ -98,6 +102,8 @@
                 success: function (response) {
                     $("#productName").text(response.d.Nombre_Producto);
                     $("#productPrice").text("$" + response.d.Precio);
+                    $("#img_producto").prop("src", response.d.Imagen);
+                    $('#descripcion').text(response.d.Categoria.Descripcion);
                 },
                 error: function (response) {
                     //Mostrar un mensaje de error

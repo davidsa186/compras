@@ -25,7 +25,7 @@ namespace CarritoDeCompras
         }
 
         [System.Web.Services.WebMethod]
-        public static List<EN.Producto> GetProductos()
+        public static List<EN.Producto> GetProductoDefault()
         {
             CT.Producto controladora = new CT.Producto();
             var lista = controladora.GetProductoDefault();

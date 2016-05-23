@@ -27,5 +27,14 @@ namespace CarritoDeCompras
             var lista = controladora.ListaCategorias(Id_Categoria);
             return lista;
         }
+
+        [System.Web.Services.WebMethod]
+        public static List<EN.Producto> GetProductoCategoria()
+        {
+            int Id_Categoria = int.Parse(id);
+            CT.Producto controladora = new CT.Producto();
+            var producto = controladora.GetProductoCategoria(Id_Categoria);
+            return producto;
+        }
     }
 }
