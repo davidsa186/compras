@@ -12,9 +12,16 @@
             </div>
             <hr />
         </div>
+        
     </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="script" runat="server">
     <script src="/js/cargarProductos.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            cargar('Busqueda.aspx/Resultados', '{}');
+        });
+    </script>
 </asp:Content>

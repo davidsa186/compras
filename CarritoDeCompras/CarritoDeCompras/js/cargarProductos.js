@@ -1,4 +1,4 @@
-﻿function cargar(urlMetodo, data) {
+﻿function cargar(urlMetodo, data) {    
     $.ajax({
         type: "POST",
         url: urlMetodo,
@@ -6,7 +6,7 @@
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
-            console.log(response);
+            console.log(response);            
             for (var i = 0; i < response.d.length; i++) {
                 var div = '<div class="col-sm-4 col-lg-4 col-md-4">';
                 div += '<div class="thumbnail">';

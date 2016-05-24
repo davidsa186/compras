@@ -8,7 +8,7 @@
 
         <div class="row" id="index">
             <div class="container">
-                <h3>Categoria: <small id="nom_cat"></small></h3>
+                <h3>Categoria: <small><asp:Label ID="lblCategoria" runat="server"></asp:Label></small></h3>
             </div>
             <hr />
         </div>
@@ -19,25 +19,7 @@
     <script src="/js/cargarProductos.js"></script>
 
     <script>
-        $(document).ready(function () {
-            $.ajax({
-                type: "POST",
-                url: "ProductoCategoria.aspx/GetCategoria",
-                data: {},
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {
-                    console.log(response);
-                    for (var i = 0; i < response.d.length; i++) {
-                        var categoria = response.d[i].Nombre_Categoria;
-                        var id = response.d[i].Id_Categoria;
-                        $("#nom_cat").text(categoria);
-                    }
-                },
-                error: function (response) {
-                    //Mostrar un mensaje de error
-                }
-            });
+        $(document).ready(function () {            
             cargar('ProductoCategoria.aspx/GetProductoCategoria', '{}');
         });
     </script>

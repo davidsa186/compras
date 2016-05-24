@@ -17,15 +17,15 @@ namespace CarritoDeCompras
         protected void Page_Load(object sender, EventArgs e)
         {
             id = Request.QueryString["id"];
+            MostrarCategoria();          
         }
-
-        [System.Web.Services.WebMethod]
-        public static List<EN.Categoria> GetCategoria()
-        {          
-            int Id_Categoria = int.Parse(id);
+                
+        private void MostrarCategoria()
+        {
             CT.Categorias controladora = new CT.Categorias();
-            var lista = controladora.ListaCategorias(Id_Categoria);
-            return lista;
+            int Id_Categoria = int.Parse(id);
+            EN.Categoria categoria = controladora.ListaCategorias(Id_Categoria).FirstOrDefault();
+            lblCategoria.Text = categoria.Nombre_Categoria;
         }
 
         [System.Web.Services.WebMethod]
