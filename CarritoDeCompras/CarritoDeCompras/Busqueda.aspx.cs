@@ -26,7 +26,7 @@ namespace CarritoDeCompras
             {
                 consulta = consulta.ToLower();
                 CT.Producto controladora = new CT.Producto();
-                return controladora.GetProductoDefault();
+                return controladora.GetResultados(consulta);
             }
             return null;
         }

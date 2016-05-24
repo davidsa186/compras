@@ -55,27 +55,22 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">Nosotros</a>
-                    </li>
-                    <li>
-                        <a href="#">Servicios</a>
-                    </li>
-                    <li>
-                        <a href="#">Contacto</a>
-                    </li>
-                </ul>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">                
                 <form class="navbar-form navbar-left" role="search">
-                    <div class="form-group has-feedback">                        
-                        <input type="text" class="form-control" name="search" id="search" placeholder="Buscar">
+                    <div class="form-group has-feedback">
+                        <input type="text" class="form-control" id="search" placeholder="Buscar">
                         <button type="button" class="button button-default" id="buscar">
                             <span class="glyphicon glyphicon-search"></span>
-                        </button>                        
+                        </button>
                     </div>
                 </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>                        
+                        <a aria-hidden="true" href="#"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge">4</span></a>                                  
+                    </li>
+                </ul>
             </div>
+
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
@@ -132,18 +127,29 @@
                     for (var i = 0; i < response.d.length; i++) {
                         var categoria = response.d[i].Nombre_Categoria;
                         var id = response.d[i].Id_Categoria;
-                        $("#categoria").append('<a href="ProductoCategoria.aspx?id=' + id + '" class="list-group-item">' + categoria + '</a>');                        
-                    }                    
+                        $("#categoria").append('<a href="ProductoCategoria.aspx?id=' + id + '" class="list-group-item">' + categoria + '</a>');
+                    }
                 },
                 error: function (response) {
                     //Mostrar un mensaje de error
                 }
             });
 
-            $("#buscar").click(function () {
+            function buscar() {
                 var consulta = $("#search").val();
                 if (consulta != '') {
                     window.location.href = "Busqueda.aspx?consulta=" + consulta;
+                }
+            }
+
+            $("#buscar").click(function () {
+                buscar();
+            });
+
+            $('#search').on('keypress', function (event) {
+                if (event.which === 13) {
+                    buscar();
+                    return false;
                 }
             });
         });
