@@ -6,6 +6,7 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Registro</title>
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
     <link rel="stylesheet" href="fontsfa/css/font-awesome.min.css">
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />

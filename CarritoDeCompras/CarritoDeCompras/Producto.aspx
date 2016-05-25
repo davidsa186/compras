@@ -112,17 +112,14 @@
         });
 
         $("#btn_carrito").click(function () {
-            $.ajax({
-                type: "POST",
-                url: "Producto.aspx/Incrementar",
-                data: {},
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (response) {                    
-                },
-                error: function (response) {                    
-                }
-            });
+            var cant = sessionStorage.getItem("Cantidad");
+            if (cant == null || cant == undefined) {
+                cant = 1;
+            } else {
+                cant = parseInt(cant) + 1;
+            }
+            sessionStorage.setItem("Cantidad", cant);
+            $("#carrito").text(cant);
         });
     </script>
 </asp:Content>
