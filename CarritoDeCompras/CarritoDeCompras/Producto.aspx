@@ -11,11 +11,11 @@
             <div class="caption-full">
                 <h4 class="pull-right" id="productPrice"></h4>
                 <h4 id="productName"></h4>
-                <p id="descripcion"></p>
-                <button type="button" class="btn btn-default" aria-label="Añadir al carrito">
+                <p id="descripcion"></p>                
+                <button type="button" class="btn btn-default" id="btn_carrito">
                     <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                     <span>Añadir al carrito</span>
-                </button>
+                </button>                
                 <button type="button" class="btn btn-default pull-right" aria-label="Añadir a la lista de deseos">
                     <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                     <span>Añadir a la lista de deseos</span>
@@ -107,6 +107,20 @@
                 },
                 error: function (response) {
                     //Mostrar un mensaje de error
+                }
+            });
+        });
+
+        $("#btn_carrito").click(function () {
+            $.ajax({
+                type: "POST",
+                url: "Producto.aspx/Incrementar",
+                data: {},
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {                    
+                },
+                error: function (response) {                    
                 }
             });
         });

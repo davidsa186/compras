@@ -31,6 +31,5 @@ namespace CarritoDeCompras
             var lista = controladora.GetProductoDefault();
             return lista;
         }
-
     }
 }

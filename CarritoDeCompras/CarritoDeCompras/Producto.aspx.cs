@@ -24,6 +24,6 @@ namespace CarritoDeCompras
             int IdProducto = int.Parse(id);
             CT.Producto controladora = new CT.Producto();            
             return controladora.GetProducto(IdProducto);
-        }
+        }     
     }
 }
