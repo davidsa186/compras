@@ -14,12 +14,11 @@
 <body>
     <form id="form1" runat="server">
         <div class="container">
-            <center><i class="fa fa-shopping-cart fa-5x" aria-hidden="true">PlatiniExpress</i></center>
-            <br />
-
-            <div class="col-lg-12">
-                <h1 class="page-header">Registro de Usuarios</h1>
+            <div class="text-center">
+                <h1><i class="fa fa-shopping-cart" aria-hidden="true"></i>PlatiniExpress</h1>
             </div>
+                        
+            <h2 class="page-header">Registro de Usuarios</h2>           
 
             <div class="row">
                 <div class="col-lg-12">
@@ -31,12 +30,10 @@
                             <div class="row">
                                 <div class="col-lg-6">
 
-
                                     <div class="<%= Clase %>">
                                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                                         <%= Mensaje%>
                                     </div>
-
 
                                     <div class="form-group">
                                         <label>Usuario</label>
