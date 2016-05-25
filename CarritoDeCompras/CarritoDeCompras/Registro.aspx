@@ -12,28 +12,25 @@
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-    <form id="form1" runat="server">
-        <div class="container">
-            <div class="text-center">
-                <h1><i class="fa fa-shopping-cart" aria-hidden="true"></i>PlatiniExpress</h1>
-            </div>
-                        
-            <h2 class="page-header">Registro de Usuarios</h2>           
 
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            Ingrese los datos del nuevo Usuario                
-                        </div>
-                        <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-6">
+    <div class="container">
+        <div class="text-center">
+            <h1><i class="fa fa-shopping-cart" aria-hidden="true"></i>PlatiniExpress</h1>
+        </div>
 
-                                    <div class="<%= Clase %>">
-                                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                                        <%= Mensaje%>
-                                    </div>
+        <h2 class="page-header">Registro de Usuarios</h2>
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Ingrese los datos del nuevo Usuario                
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <form id="form1" runat="server">
+
+                                <asp:Panel ID="PanelInicial" runat="server" CssClass="col-lg-6">
 
                                     <div class="form-group">
                                         <label>Usuario</label>
@@ -52,49 +49,103 @@
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ControlToValidate="TextBox_password"></asp:RequiredFieldValidator>
                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Password invalido (debe contener minimo 7 caracteres)" ValidationExpression="^([A-Za-z0-9]{7,})$" ControlToValidate="TextBox_password"></asp:RegularExpressionValidator>
                                     </div>
-                                    <div class="form-group">
-                                        <label>Ciudad</label>
-                                        <asp:DropDownList ID="dropCiudades" runat="server" CssClass="form-control"></asp:DropDownList>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Cédula</label>
-                                        <asp:TextBox ID="TextBox_Cedula" runat="server" CssClass="form-control" placeholder="EJ: 21777321"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*" ControlToValidate="TextBox_Cedula"></asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator3" runat="server" ErrorMessage="Cedula invalida" ValidationExpression="^([0-9]+)$" ControlToValidate="TextBox_Cedula"></asp:RegularExpressionValidator>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Nombres</label>
-                                        <asp:TextBox ID="TextBox_Nombre" runat="server" CssClass="form-control" placeholder="EJ: Daniel Arboleda"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*" ControlToValidate="TextBox_Nombre"></asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator4" runat="server" ErrorMessage="Nombre invalido" ValidationExpression="^([A-Za-záéíóúñ]{2,}([\s][A-Za-záéíóúñ]{2,})*)$" ControlToValidate="TextBox_Nombre"></asp:RegularExpressionValidator>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Dirección</label>
-                                        <asp:TextBox ID="TextBox_Direccion" runat="server" CssClass="form-control" placeholder="EJ: Carrera 70 #42-8"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ControlToValidate="TextBox_Direccion"></asp:RequiredFieldValidator>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Teléfono</label>
-                                        <asp:TextBox ID="TextBox_Telefono" runat="server" CssClass="form-control" placeholder="EJ: 4444444"></asp:TextBox>
-                                        <asp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="*" ControlToValidate="TextBox_Telefono"></asp:RequiredFieldValidator>
-                                        <asp:RegularExpressionValidator ID="RegularExpressionValidator5" runat="server" ErrorMessage="Telefono invalido" ValidationExpression="^([0-9]+)$" ControlToValidate="TextBox_Telefono"></asp:RegularExpressionValidator>
-                                    </div>
-                                    <asp:Button ID="Button1" runat="server" Text="Guardar" CssClass="btn btn-default" OnClick="Button1_Click" />
-                                    <%--<asp:Literal ID="Resultado" runat="server"></asp:Literal>--%>
-                                </div>
-                                <!-- /.col-lg-6 (nested) -->
+                                    <asp:Button ID="Btn_Siguiente" runat="server" Text="Siguiente" CssClass="btn btn-primary" OnClick="Button1_Click" />
+                                </asp:Panel>
+                            </form>
 
-                                <!-- /.col-lg-6 (nested) -->
-                            </div>
-                            <!-- /.row (nested) -->
+                            <asp:Panel ID="Panel1" runat="server" CssClass="col-lg-6" Visible="false">
+                                <div class="form-group">
+                                    <label>Ciudad</label>
+                                    <select id="Drop_Ciudades" class="form-control"></select>
+                                </div>
+                                <div class="form-group">
+                                    <label>Cédula</label>
+                                    <input id="TextBox_Cedula" type="number" class="form-control" placeholder="EJ: 21777321"></input>
+                                </div>
+                                <div class="form-group">
+                                    <label>Nombres</label>
+                                    <input id="TextBox_Nombre" type="text" class="form-control" placeholder="EJ: Juan Pablo"></input>
+                                </div>
+                                <div class="form-group">
+                                    <label>Dirección</label>
+                                    <input id="TextBox_Direccion" type="text" class="form-control" placeholder="EJ: Calle 50 #20a-30"></input>
+                                </div>
+                                <button id="Btn_Terminar" class="btn btn-primary">Terminar</button>
+                            </asp:Panel>
+
+                            <asp:Panel ID="Panel2" runat="server" Visible="false">
+                                <div class="col-lg-6" id="div_telefonos">
+                                    <p><strong>Teléfono</strong></p>
+                                    <button id="btn_telefono" class="btn btn-default">Agregar Telefono</button>
+                                </div>
+                            </asp:Panel>
                         </div>
-                        <!-- /.panel-body -->
                     </div>
-                    <!-- /.panel -->
                 </div>
-                <!-- /.col-lg-12 -->
+
             </div>
         </div>
-    </form>
+    </div>
+
+    <script src="js/jquery.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: "POST",
+                url: "Registro.aspx/ListadoCiudades",
+                data: {},
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    for (var j = 0; j < response.d.length; j++) {
+                        $("#Drop_Ciudades").append('<option value="' + response.d[j].Id_Ciudad + '">' + response.d[j].Nombre_Ciudad + '</option>');
+                    }
+                },
+                error: function (response) {
+                    //Mostrar un mensaje de error
+                }
+            });
+        });
+
+        $("#btn_telefono").click(function () {
+            var input = '<div class="col-lg-10"><input type="number" class="form-control in_telefono"></input></div>';
+            var boton = '<div class="col-lg-2"><button type="button" class="btn btn-default del"><i class="fa fa-remove"></i></button></div>';
+            $("#div_telefonos").append('<div class="row"><br>' + input + boton + '</div>');
+        });
+
+        $("#div_telefonos").on("click", ".del", function () {
+            $(this).closest(".row").remove();
+        });
+
+        $("#Btn_Terminar").click(function () {
+            var ciudad = $("#Drop_Ciudades").val();
+            var cedula = $("#TextBox_Cedula").val();
+            var direccion = $("#TextBox_Direccion").val();
+            var nombre = $("#TextBox_Nombre").val();
+            var array_telefonos = [];
+            $("#div_telefonos").find(".in_telefono").each(function (index) {
+                array_telefonos.push($(this).val());                
+            });
+            $.ajax({
+                type: "POST",
+                url: "Registro.aspx/Insertar",
+                data: '{ciudad:"' + ciudad + '", cedula:"' + cedula + '", direccion:"' + direccion + '", nombre:"' + nombre + '", arrayTelefonos:' + JSON.stringify(array_telefonos) + '}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.d == true) {
+                        alert("Cliente Ingresado");
+                        window.location.href = "Default.aspx";
+                    } else {
+                        alert("Client no ingresado");
+                    }
+                },
+                error: function (response) {
+                    //Mostrar un mensaje de error
+                }
+            });
+        });
+    </script>
 </body>
 </html>

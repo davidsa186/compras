@@ -21,11 +21,11 @@ namespace upb.tabd.broker
             this.Telefono = new HashSet<Telefono>();
         }
     
-        public int Id_Cliente { get; set; }
+        public System.Guid Id_Cliente { get; set; }
         public string Nombres { get; set; }
         public int Id_Ciudad { get; set; }
         public string Direccion { get; set; }
-        public int Cedula { get; set; }
+        public long Cedula { get; set; }
     
         public virtual Ciudad Ciudad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -5,16 +5,44 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using CT = upb.tabd.controladora;
+using EN = upb.tabd.entidades;
 
 namespace CarritoDeCompras
 {
     public partial class Registro : System.Web.UI.Page
     {
-        public string Clase { get; set; }
-        public string Mensaje { get; set; }
+
+        public static Guid userID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            Clase = "invisible";
+
+        }
+
+        [System.Web.Services.WebMethod]
+        public static List<EN.Ciudad> ListadoCiudades()
+        {
+            CT.Ciudad control = new CT.Ciudad();
+            var ciudades = control.ListaCiudades();
+            return ciudades;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static bool Insertar(int ciudad, int cedula, string direccion, string nombre, int[] arrayTelefonos)
+        {
+            EN.Cliente cliente = new EN.Cliente();
+            cliente.Id_Cliente = userID;
+            cliente.Id_Ciudad = ciudad;
+            cliente.Cedula = cedula;
+            cliente.Direccion = direccion;
+            cliente.Nombre = nombre;
+            cliente.Array_Telefonos = arrayTelefonos;
+
+
+            CT.Cliente controladora = new CT.Cliente();
+            var resultado= controladora.IngresarCliente(cliente);
+            return resultado;
         }
 
         protected void Button1_Click(object sender, EventArgs e)
@@ -22,67 +50,17 @@ namespace CarritoDeCompras
             try
             {
                 var mu = Membership.CreateUser(TextBox_username.Text, TextBox_password.Text, TextBox_email.Text);
-                Guid userID = (Guid)mu.ProviderUserKey;
+                userID = (Guid)mu.ProviderUserKey;
 
-
-                //var ctx = new BusesDataContext();
-                //var usuario = new Usuario()
-                //{
-                //    Cedula = Convert.ToInt32(TextBox_Cedula.Text),
-                //    Direccion = TextBox_Direccion.Text,
-                //    Telefono = Convert.ToInt32(TextBox_Telefono.Text),
-                //    Nombre = TextBox_Nombre.Text,
-                //    Id_Usuario = userID
-
-                //};
-                //ctx.Usuario.InsertOnSubmit(usuario);
-                //ctx.SubmitChanges();
-
-                Clase = "alert alert-success alert-dismissable";
-                Mensaje = "Se agregó el usuario correctamente";
-
+                PanelInicial.Visible = false;
+                Panel1.Visible = true;
+                Panel2.Visible = true;
             }
-            catch (MembershipCreateUserException ex)
+            catch (MembershipCreateUserException )
             {
 
-                Clase = "alert alert-danger alert-dismissable";
-                Mensaje = "No se agregó el usuario";
-
-                switch (ex.StatusCode)
-                {
-                    case MembershipCreateStatus.Success:
-                        string script = "alert('Creado Exitosamente');";
-                        ClientScript.RegisterStartupScript(this.GetType(), "alerta", script, true);
-                        string cerrar = "window.close();window.opener.document.location='Default.aspx';";
-                        ClientScript.RegisterStartupScript(this.GetType(), "cerrar", cerrar, true);
-                        break;
-                    case MembershipCreateStatus.InvalidUserName:
-                        break;
-                    case MembershipCreateStatus.InvalidPassword:
-                        string script1 = "alert('El password no cumple con las condiciones mínimas de seguridad. Ingrese un passsword de 7 caracteres');";
-                        ClientScript.RegisterStartupScript(this.GetType(), "alerta", script1, true);
-                        break;
-                    case MembershipCreateStatus.InvalidQuestion:
-                        break;
-                    case MembershipCreateStatus.InvalidAnswer:
-                        break;
-                    case MembershipCreateStatus.InvalidEmail:
-                        break;
-                    case MembershipCreateStatus.DuplicateUserName:
-                        break;
-                    case MembershipCreateStatus.DuplicateEmail:
-                        break;
-                    case MembershipCreateStatus.UserRejected:
-                        break;
-                    case MembershipCreateStatus.InvalidProviderUserKey:
-                        break;
-                    case MembershipCreateStatus.DuplicateProviderUserKey:
-                        break;
-                    case MembershipCreateStatus.ProviderError:
-                        break;
-                    default:
-                        break;
-                }
+      
+               
             }
 
         }

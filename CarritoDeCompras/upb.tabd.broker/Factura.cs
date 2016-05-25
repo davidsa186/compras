@@ -22,7 +22,7 @@ namespace upb.tabd.broker
     
         public int Id_Factura { get; set; }
         public System.DateTime Fecha { get; set; }
-        public int Id_Cliente { get; set; }
+        public System.Guid Id_Cliente { get; set; }
         public int Total_Neto { get; set; }
         public int Descuento { get; set; }
         public int Total { get; set; }

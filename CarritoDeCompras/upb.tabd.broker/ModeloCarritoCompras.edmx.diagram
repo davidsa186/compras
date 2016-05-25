@@ -5,21 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1113de82ade24932bc022f84ec5c26e7" Name="Diagram1">
-        <EntityTypeShape EntityType="TABD_FinalModel.Categoria" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TABD_FinalModel.Ciudad" Width="1.5" PointX="2" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TABD_FinalModel.Cliente" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="TABD_FinalModel.Detalle_Factura" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TABD_FinalModel.Factura" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
-        <EntityTypeShape EntityType="TABD_FinalModel.Producto" Width="1.5" PointX="2.875" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TABD_FinalModel.Proveedor" Width="1.5" PointX="0.75" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TABD_FinalModel.Telefono" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
-        <AssociationConnector Association="TABD_FinalModel.FK_Producto_Categoria" ManuallyRouted="false" />
-        <AssociationConnector Association="TABD_FinalModel.FK_Cliente_Ciudad" ManuallyRouted="false" />
-        <AssociationConnector Association="TABD_FinalModel.FK_Factura_Cliente" ManuallyRouted="false" />
-        <AssociationConnector Association="TABD_FinalModel.FK_Telefono_Cliente" ManuallyRouted="false" />
-        <AssociationConnector Association="TABD_FinalModel.FK_Detalle_Factura" ManuallyRouted="false" />
-        <AssociationConnector Association="TABD_FinalModel.FK_Detalle_Producto" ManuallyRouted="false" />
-        <AssociationConnector Association="TABD_FinalModel.FK_Producto_Proveedores" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TABD_FinalModel.Categoria" Width="1.5" PointX="0.75" PointY="1.5" />
+        <EntityTypeShape EntityType="TABD_FinalModel.Ciudad" Width="1.5" PointX="1.5" PointY="12.625" />
+        <EntityTypeShape EntityType="TABD_FinalModel.Cliente" Width="1.5" PointX="0.75" PointY="9.125" />
+        <EntityTypeShape EntityType="TABD_FinalModel.Detalle_Factura" Width="1.5" PointX="5.25" PointY="1.25" />
+        <EntityTypeShape EntityType="TABD_FinalModel.Factura" Width="1.5" PointX="3" PointY="9.125" />
+        <EntityTypeShape EntityType="TABD_FinalModel.Producto" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="TABD_FinalModel.Proveedor" Width="1.5" PointX="0.75" PointY="5.375" />
+        <EntityTypeShape EntityType="TABD_FinalModel.Telefono" Width="1.5" PointX="3" PointY="6.625" />
+        <AssociationConnector Association="TABD_FinalModel.FK_Producto_Categoria" />
+        <AssociationConnector Association="TABD_FinalModel.FK_Cliente_Ciudad" />
+        <AssociationConnector Association="TABD_FinalModel.FK_Factura_Cliente" />
+        <AssociationConnector Association="TABD_FinalModel.FK_Telefono_Cliente" />
+        <AssociationConnector Association="TABD_FinalModel.FK_Detalle_Factura" />
+        <AssociationConnector Association="TABD_FinalModel.FK_Detalle_Producto" />
+        <AssociationConnector Association="TABD_FinalModel.FK_Producto_Proveedores" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

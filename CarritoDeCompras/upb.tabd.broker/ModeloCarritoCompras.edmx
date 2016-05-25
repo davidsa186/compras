@@ -24,11 +24,11 @@
           <Key>
             <PropertyRef Name="Id_Cliente" />
           </Key>
-          <Property Name="Id_Cliente" Type="int" Nullable="false" />
+          <Property Name="Id_Cliente" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Nombres" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Id_Ciudad" Type="int" Nullable="false" />
           <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Cedula" Type="int" Nullable="false" />
+          <Property Name="Cedula" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="Detalle_Factura">
           <Key>
@@ -46,7 +46,7 @@
           </Key>
           <Property Name="Id_Factura" Type="int" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
-          <Property Name="Id_Cliente" Type="int" Nullable="false" />
+          <Property Name="Id_Cliente" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Total_Neto" Type="int" Nullable="false" />
           <Property Name="Descuento" Type="int" Nullable="false" />
           <Property Name="Total" Type="int" Nullable="false" />
@@ -77,8 +77,8 @@
           <Key>
             <PropertyRef Name="Numero_Telefono" />
           </Key>
-          <Property Name="Numero_Telefono" Type="int" Nullable="false" />
-          <Property Name="Id_Cliente" Type="int" Nullable="false" />
+          <Property Name="Numero_Telefono" Type="bigint" Nullable="false" />
+          <Property Name="Id_Cliente" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <Association Name="FK_Cliente_Ciudad">
           <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1">
@@ -220,35 +220,73 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TABD_FinalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TABD_FinalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Categoria" EntityType="TABD_FinalModel.Categoria" />
+          <EntitySet Name="Ciudad" EntityType="TABD_FinalModel.Ciudad" />
+          <EntitySet Name="Cliente" EntityType="TABD_FinalModel.Cliente" />
+          <EntitySet Name="Detalle_Factura" EntityType="TABD_FinalModel.Detalle_Factura" />
+          <EntitySet Name="Factura" EntityType="TABD_FinalModel.Factura" />
+          <EntitySet Name="Producto" EntityType="TABD_FinalModel.Producto" />
+          <EntitySet Name="Proveedor" EntityType="TABD_FinalModel.Proveedor" />
+          <EntitySet Name="Telefono" EntityType="TABD_FinalModel.Telefono" />
+          <AssociationSet Name="FK_Producto_Categoria" Association="TABD_FinalModel.FK_Producto_Categoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_Ciudad" Association="TABD_FinalModel.FK_Cliente_Ciudad">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Factura_Cliente" Association="TABD_FinalModel.FK_Factura_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Factura" EntitySet="Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Telefono_Cliente" Association="TABD_FinalModel.FK_Telefono_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Telefono" EntitySet="Telefono" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Factura" Association="TABD_FinalModel.FK_Detalle_Factura">
+            <End Role="Factura" EntitySet="Factura" />
+            <End Role="Detalle_Factura" EntitySet="Detalle_Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Detalle_Producto" Association="TABD_FinalModel.FK_Detalle_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="Detalle_Factura" EntitySet="Detalle_Factura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Producto_Proveedores" Association="TABD_FinalModel.FK_Producto_Proveedores">
+            <End Role="Proveedor" EntitySet="Proveedor" />
+            <End Role="Producto" EntitySet="Producto" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="Id_Categoria" />
           </Key>
           <Property Name="Id_Categoria" Type="Int32" Nullable="false" />
-          <Property Name="Nombre_Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_Categoria" FromRole="Categoria" ToRole="Producto" />
+          <Property Name="Nombre_Categoria" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Producto" Relationship="TABD_FinalModel.FK_Producto_Categoria" FromRole="Categoria" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Ciudad">
           <Key>
             <PropertyRef Name="Id_Ciudad" />
           </Key>
           <Property Name="Id_Ciudad" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_Ciudad" FromRole="Ciudad" ToRole="Cliente" />
           <Property Name="Nombre_Ciudad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="TABD_FinalModel.FK_Cliente_Ciudad" FromRole="Ciudad" ToRole="Cliente" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Id_Cliente" />
           </Key>
-          <Property Name="Id_Cliente" Type="Int32" Nullable="false" />
-          <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id_Cliente" Type="Guid" Nullable="false" />
+          <Property Name="Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Id_Ciudad" Type="Int32" Nullable="false" />
-          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Ciudad" Relationship="Self.FK_Cliente_Ciudad" FromRole="Cliente" ToRole="Ciudad" />
-          <NavigationProperty Name="Factura" Relationship="Self.FK_Factura_Cliente" FromRole="Cliente" ToRole="Factura" />
-          <NavigationProperty Name="Telefono" Relationship="Self.FK_Telefono_Cliente" FromRole="Cliente" ToRole="Telefono" />
-          <Property Name="Cedula" Type="Int32" Nullable="false" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Cedula" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Ciudad" Relationship="TABD_FinalModel.FK_Cliente_Ciudad" FromRole="Cliente" ToRole="Ciudad" />
+          <NavigationProperty Name="Factura" Relationship="TABD_FinalModel.FK_Factura_Cliente" FromRole="Cliente" ToRole="Factura" />
+          <NavigationProperty Name="Telefono" Relationship="TABD_FinalModel.FK_Telefono_Cliente" FromRole="Cliente" ToRole="Telefono" />
         </EntityType>
         <EntityType Name="Detalle_Factura">
           <Key>
@@ -259,8 +297,8 @@
           <Property Name="Id_Producto" Type="Int32" Nullable="false" />
           <Property Name="Cantidad" Type="Int32" Nullable="false" />
           <Property Name="Precio_Unitario" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Factura" Relationship="Self.FK_Detalle_Factura" FromRole="Detalle_Factura" ToRole="Factura" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK_Detalle_Producto" FromRole="Detalle_Factura" ToRole="Producto" />
+          <NavigationProperty Name="Factura" Relationship="TABD_FinalModel.FK_Detalle_Factura" FromRole="Detalle_Factura" ToRole="Factura" />
+          <NavigationProperty Name="Producto" Relationship="TABD_FinalModel.FK_Detalle_Producto" FromRole="Detalle_Factura" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Factura">
           <Key>
@@ -268,52 +306,52 @@
           </Key>
           <Property Name="Id_Factura" Type="Int32" Nullable="false" />
           <Property Name="Fecha" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="Id_Cliente" Type="Int32" Nullable="false" />
+          <Property Name="Id_Cliente" Type="Guid" Nullable="false" />
           <Property Name="Total_Neto" Type="Int32" Nullable="false" />
           <Property Name="Descuento" Type="Int32" Nullable="false" />
           <Property Name="Total" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK_Factura_Cliente" FromRole="Factura" ToRole="Cliente" />
-          <NavigationProperty Name="Detalle_Factura" Relationship="Self.FK_Detalle_Factura" FromRole="Factura" ToRole="Detalle_Factura" />
+          <NavigationProperty Name="Cliente" Relationship="TABD_FinalModel.FK_Factura_Cliente" FromRole="Factura" ToRole="Cliente" />
+          <NavigationProperty Name="Detalle_Factura" Relationship="TABD_FinalModel.FK_Detalle_Factura" FromRole="Factura" ToRole="Detalle_Factura" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
             <PropertyRef Name="Id_Producto" />
           </Key>
           <Property Name="Id_Producto" Type="Int32" Nullable="false" />
-          <Property Name="Nombre_Producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombre_Producto" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Precio" Type="Int32" Nullable="false" />
           <Property Name="Stock" Type="Int32" Nullable="false" />
           <Property Name="Id_Proveedor" Type="Int32" Nullable="false" />
           <Property Name="Id_Categoria" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Categoria" Relationship="Self.FK_Producto_Categoria" FromRole="Producto" ToRole="Categoria" />
-          <NavigationProperty Name="Detalle_Factura" Relationship="Self.FK_Detalle_Producto" FromRole="Producto" ToRole="Detalle_Factura" />
-          <NavigationProperty Name="Proveedor" Relationship="Self.FK_Producto_Proveedores" FromRole="Producto" ToRole="Proveedor" />
           <Property Name="Imagen" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Categoria" Relationship="TABD_FinalModel.FK_Producto_Categoria" FromRole="Producto" ToRole="Categoria" />
+          <NavigationProperty Name="Detalle_Factura" Relationship="TABD_FinalModel.FK_Detalle_Producto" FromRole="Producto" ToRole="Detalle_Factura" />
+          <NavigationProperty Name="Proveedor" Relationship="TABD_FinalModel.FK_Producto_Proveedores" FromRole="Producto" ToRole="Proveedor" />
         </EntityType>
         <EntityType Name="Proveedor">
           <Key>
             <PropertyRef Name="Id_Proveedor" />
           </Key>
           <Property Name="Id_Proveedor" Type="Int32" Nullable="false" />
-          <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nombres" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="Int32" Nullable="false" />
-          <Property Name="Sitio_Web" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Producto" Relationship="Self.FK_Producto_Proveedores" FromRole="Proveedor" ToRole="Producto" />
+          <Property Name="Sitio_Web" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Producto" Relationship="TABD_FinalModel.FK_Producto_Proveedores" FromRole="Proveedor" ToRole="Producto" />
         </EntityType>
         <EntityType Name="Telefono">
           <Key>
             <PropertyRef Name="Numero_Telefono" />
           </Key>
-          <Property Name="Numero_Telefono" Type="Int32" Nullable="false" />
-          <Property Name="Id_Cliente" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK_Telefono_Cliente" FromRole="Telefono" ToRole="Cliente" />
+          <Property Name="Numero_Telefono" Type="Int64" Nullable="false" />
+          <Property Name="Id_Cliente" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="TABD_FinalModel.FK_Telefono_Cliente" FromRole="Telefono" ToRole="Cliente" />
         </EntityType>
         <Association Name="FK_Producto_Categoria">
-          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1">
+          <End Type="TABD_FinalModel.Categoria" Role="Categoria" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <End Type="TABD_FinalModel.Producto" Role="Producto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categoria">
               <PropertyRef Name="Id_Categoria" />
@@ -324,10 +362,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Cliente_Ciudad">
-          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1">
+          <End Type="TABD_FinalModel.Ciudad" Role="Ciudad" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <End Type="TABD_FinalModel.Cliente" Role="Cliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ciudad">
               <PropertyRef Name="Id_Ciudad" />
@@ -338,10 +376,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Factura_Cliente">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1">
+          <End Type="TABD_FinalModel.Cliente" Role="Cliente" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Factura" Type="Self.Factura" Multiplicity="*" />
+          <End Type="TABD_FinalModel.Factura" Role="Factura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cliente">
               <PropertyRef Name="Id_Cliente" />
@@ -352,10 +390,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Telefono_Cliente">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1">
+          <End Type="TABD_FinalModel.Cliente" Role="Cliente" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Telefono" Type="Self.Telefono" Multiplicity="*" />
+          <End Type="TABD_FinalModel.Telefono" Role="Telefono" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Cliente">
               <PropertyRef Name="Id_Cliente" />
@@ -366,10 +404,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Detalle_Factura">
-          <End Role="Factura" Type="Self.Factura" Multiplicity="1">
+          <End Type="TABD_FinalModel.Factura" Role="Factura" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Detalle_Factura" Type="Self.Detalle_Factura" Multiplicity="*" />
+          <End Type="TABD_FinalModel.Detalle_Factura" Role="Detalle_Factura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Factura">
               <PropertyRef Name="Id_Factura" />
@@ -380,10 +418,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Detalle_Producto">
-          <End Role="Producto" Type="Self.Producto" Multiplicity="1">
+          <End Type="TABD_FinalModel.Producto" Role="Producto" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Detalle_Factura" Type="Self.Detalle_Factura" Multiplicity="*" />
+          <End Type="TABD_FinalModel.Detalle_Factura" Role="Detalle_Factura" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Producto">
               <PropertyRef Name="Id_Producto" />
@@ -394,10 +432,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Producto_Proveedores">
-          <End Role="Proveedor" Type="Self.Proveedor" Multiplicity="1">
+          <End Type="TABD_FinalModel.Proveedor" Role="Proveedor" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
+          <End Type="TABD_FinalModel.Producto" Role="Producto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Proveedor">
               <PropertyRef Name="Id_Proveedor" />
@@ -407,45 +445,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TABD_FinalEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
-          <EntitySet Name="Ciudad" EntityType="Self.Ciudad" />
-          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
-          <EntitySet Name="Detalle_Factura" EntityType="Self.Detalle_Factura" />
-          <EntitySet Name="Factura" EntityType="Self.Factura" />
-          <EntitySet Name="Producto" EntityType="Self.Producto" />
-          <EntitySet Name="Proveedor" EntityType="Self.Proveedor" />
-          <EntitySet Name="Telefono" EntityType="Self.Telefono" />
-          <AssociationSet Name="FK_Producto_Categoria" Association="Self.FK_Producto_Categoria">
-            <End Role="Categoria" EntitySet="Categoria" />
-            <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cliente_Ciudad" Association="Self.FK_Cliente_Ciudad">
-            <End Role="Ciudad" EntitySet="Ciudad" />
-            <End Role="Cliente" EntitySet="Cliente" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Factura_Cliente" Association="Self.FK_Factura_Cliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Factura" EntitySet="Factura" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Telefono_Cliente" Association="Self.FK_Telefono_Cliente">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Telefono" EntitySet="Telefono" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detalle_Factura" Association="Self.FK_Detalle_Factura">
-            <End Role="Factura" EntitySet="Factura" />
-            <End Role="Detalle_Factura" EntitySet="Detalle_Factura" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Detalle_Producto" Association="Self.FK_Detalle_Producto">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="Detalle_Factura" EntitySet="Detalle_Factura" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Producto_Proveedores" Association="Self.FK_Producto_Proveedores">
-            <End Role="Proveedor" EntitySet="Proveedor" />
-            <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -454,9 +454,9 @@
           <EntitySetMapping Name="Categoria">
             <EntityTypeMapping TypeName="TABD_FinalModel.Categoria">
               <MappingFragment StoreEntitySet="Categoria">
-                <ScalarProperty Name="Id_Categoria" ColumnName="Id_Categoria" />
-                <ScalarProperty Name="Nombre_Categoria" ColumnName="Nombre_Categoria" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre_Categoria" ColumnName="Nombre_Categoria" />
+                <ScalarProperty Name="Id_Categoria" ColumnName="Id_Categoria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -472,33 +472,33 @@
             <EntityTypeMapping TypeName="TABD_FinalModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
                 <ScalarProperty Name="Cedula" ColumnName="Cedula" />
-                <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
-                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
-                <ScalarProperty Name="Id_Ciudad" ColumnName="Id_Ciudad" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Id_Ciudad" ColumnName="Id_Ciudad" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Detalle_Factura">
             <EntityTypeMapping TypeName="TABD_FinalModel.Detalle_Factura">
               <MappingFragment StoreEntitySet="Detalle_Factura">
-                <ScalarProperty Name="Id_Detalle" ColumnName="Id_Detalle" />
-                <ScalarProperty Name="Id_Factura" ColumnName="Id_Factura" />
-                <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
-                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
                 <ScalarProperty Name="Precio_Unitario" ColumnName="Precio_Unitario" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
+                <ScalarProperty Name="Id_Factura" ColumnName="Id_Factura" />
+                <ScalarProperty Name="Id_Detalle" ColumnName="Id_Detalle" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Factura">
             <EntityTypeMapping TypeName="TABD_FinalModel.Factura">
               <MappingFragment StoreEntitySet="Factura">
-                <ScalarProperty Name="Id_Factura" ColumnName="Id_Factura" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
-                <ScalarProperty Name="Total_Neto" ColumnName="Total_Neto" />
-                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
                 <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="Descuento" ColumnName="Descuento" />
+                <ScalarProperty Name="Total_Neto" ColumnName="Total_Neto" />
+                <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Id_Factura" ColumnName="Id_Factura" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -506,31 +506,31 @@
             <EntityTypeMapping TypeName="TABD_FinalModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
                 <ScalarProperty Name="Imagen" ColumnName="Imagen" />
-                <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
-                <ScalarProperty Name="Nombre_Producto" ColumnName="Nombre_Producto" />
-                <ScalarProperty Name="Precio" ColumnName="Precio" />
-                <ScalarProperty Name="Stock" ColumnName="Stock" />
-                <ScalarProperty Name="Id_Proveedor" ColumnName="Id_Proveedor" />
                 <ScalarProperty Name="Id_Categoria" ColumnName="Id_Categoria" />
+                <ScalarProperty Name="Id_Proveedor" ColumnName="Id_Proveedor" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Nombre_Producto" ColumnName="Nombre_Producto" />
+                <ScalarProperty Name="Id_Producto" ColumnName="Id_Producto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Proveedor">
             <EntityTypeMapping TypeName="TABD_FinalModel.Proveedor">
               <MappingFragment StoreEntitySet="Proveedor">
-                <ScalarProperty Name="Id_Proveedor" ColumnName="Id_Proveedor" />
-                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
                 <ScalarProperty Name="Sitio_Web" ColumnName="Sitio_Web" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+                <ScalarProperty Name="Id_Proveedor" ColumnName="Id_Proveedor" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Telefono">
             <EntityTypeMapping TypeName="TABD_FinalModel.Telefono">
               <MappingFragment StoreEntitySet="Telefono">
-                <ScalarProperty Name="Numero_Telefono" ColumnName="Numero_Telefono" />
                 <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
+                <ScalarProperty Name="Numero_Telefono" ColumnName="Numero_Telefono" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -55,7 +55,7 @@
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">                
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" id="search" placeholder="Buscar">
@@ -64,48 +64,56 @@
                         </button>
                     </div>
                 </form>
-                <ul class="nav navbar-nav navbar-right">
-                    <li>                        
-                        <a aria-hidden="true" href="#">
-                            <span class="glyphicon glyphicon-shopping-cart"></span>
-                            <span class="badge" id="carrito"></span>
-                        </a>                                  
-                    </li>
-                    <li>                        
-                        <a aria-hidden="true" href="#">
-                            <span class="glyphicon glyphicon-heart-empty"></span>
-                            <span class="badge">0</span>
-                        </a>                                  
-                    </li>
-                </ul>
                 <%--login--%>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
                         <ul id="login-dp" class="dropdown-menu">
-                            <li>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                                            <div class="form-group">
-                                                <label class="sr-only" for="exampleInputUserName">User Name</label>
-                                                <input type="text" class="form-control" id="exampleInputUserName" placeholder="User Name" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                                <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                                            </div>
-                                            <div class="form-group">
-                                                <button type="submit" class="btn btn-primary btn-block">Sign in</button>
-                                            </div>
-                                        </form>
+                            <form runat="server">
+                                <li>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <form class="form" role="form" accept-charset="UTF-8" id="login-nav">
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="exampleInputUserName">User Name</label>
+                                                    <asp:TextBox ID="exampleInputUserName" runat="server" CssClass="form-control" placeholder="User Name"></asp:TextBox>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                                    <asp:TextBox ID="exampleInputPassword2" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password" ></asp:TextBox>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Button ID="login" runat="server" Text="Login" CssClass="btn btn-primary btn-block" OnClick="login_Click"/>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="bottom text-center">
+                                            New here ? <a href="Registro.aspx"><b>Join Us</b></a>
+                                        </div>
                                     </div>
-                                    <div class="bottom text-center">
-                                        New here ? <a href="Registro.aspx"><b>Join Us</b></a>
-                                    </div>
-                                </div>
-                            </li>
+                                </li>
+                                <li>
+                                    <asp:LoginName ID="LoginName1" runat="server" />
+                                    <asp:LoginStatus ID="LoginStatus1" runat="server" />
+                                </li>
+                            </form>
                         </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a aria-hidden="true" href="#">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                            <span class="badge" id="carrito"></span>
+                        </a>
+                    </li>
+                    <li>
+                        <a aria-hidden="true" href="#">
+                            <span class="glyphicon glyphicon-heart-empty"></span>
+                            <span>Lista de deseos</span>
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -198,7 +206,7 @@
                 cant = 0;
             }
             $("#carrito").text(cant);
-        });
+        });  
     </script>
 
     <asp:ContentPlaceHolder ID="script" runat="server">

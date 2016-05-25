@@ -14,8 +14,8 @@ namespace upb.tabd.broker
     
     public partial class Telefono
     {
-        public int Numero_Telefono { get; set; }
-        public int Id_Cliente { get; set; }
+        public long Numero_Telefono { get; set; }
+        public System.Guid Id_Cliente { get; set; }
     
         public virtual Cliente Cliente { get; set; }
     }
