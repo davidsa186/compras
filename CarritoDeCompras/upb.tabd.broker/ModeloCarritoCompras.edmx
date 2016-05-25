@@ -18,17 +18,17 @@
             <PropertyRef Name="Id_Ciudad" />
           </Key>
           <Property Name="Id_Ciudad" Type="int" Nullable="false" />
-          <Property Name="Nombre_Categoria" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nombre_Ciudad" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Id_Cliente" />
           </Key>
           <Property Name="Id_Cliente" Type="int" Nullable="false" />
-          <Property Name="Usuario" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Nombres" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Id_Ciudad" Type="int" Nullable="false" />
           <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Cedula" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Detalle_Factura">
           <Key>
@@ -234,21 +234,21 @@
             <PropertyRef Name="Id_Ciudad" />
           </Key>
           <Property Name="Id_Ciudad" Type="Int32" Nullable="false" />
-          <Property Name="Nombre_Categoria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_Ciudad" FromRole="Ciudad" ToRole="Cliente" />
+          <Property Name="Nombre_Ciudad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="Id_Cliente" />
           </Key>
           <Property Name="Id_Cliente" Type="Int32" Nullable="false" />
-          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Id_Ciudad" Type="Int32" Nullable="false" />
           <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Ciudad" Relationship="Self.FK_Cliente_Ciudad" FromRole="Cliente" ToRole="Ciudad" />
           <NavigationProperty Name="Factura" Relationship="Self.FK_Factura_Cliente" FromRole="Cliente" ToRole="Factura" />
           <NavigationProperty Name="Telefono" Relationship="Self.FK_Telefono_Cliente" FromRole="Cliente" ToRole="Telefono" />
+          <Property Name="Cedula" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Detalle_Factura">
           <Key>
@@ -463,16 +463,16 @@
           <EntitySetMapping Name="Ciudad">
             <EntityTypeMapping TypeName="TABD_FinalModel.Ciudad">
               <MappingFragment StoreEntitySet="Ciudad">
+                <ScalarProperty Name="Nombre_Ciudad" ColumnName="Nombre_Ciudad" />
                 <ScalarProperty Name="Id_Ciudad" ColumnName="Id_Ciudad" />
-                <ScalarProperty Name="Nombre_Categoria" ColumnName="Nombre_Categoria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cliente">
             <EntityTypeMapping TypeName="TABD_FinalModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="Cedula" ColumnName="Cedula" />
                 <ScalarProperty Name="Id_Cliente" ColumnName="Id_Cliente" />
-                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
                 <ScalarProperty Name="Nombres" ColumnName="Nombres" />
                 <ScalarProperty Name="Id_Ciudad" ColumnName="Id_Ciudad" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />

@@ -21,7 +21,7 @@ namespace upb.tabd.broker
         }
     
         public int Id_Ciudad { get; set; }
-        public string Nombre_Categoria { get; set; }
+        public string Nombre_Ciudad { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Cliente> Cliente { get; set; }
