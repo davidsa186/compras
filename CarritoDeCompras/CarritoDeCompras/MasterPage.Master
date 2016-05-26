@@ -61,46 +61,37 @@
                 </form>
                 <%--login--%>
                 <ul class="nav navbar-nav navbar-right">
-
                     <li class="dropdown">
-
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-
                         <ul id="login-dp" class="dropdown-menu">
-                            <form runat="server">
-                             
-                                    <li>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="sr-only" for="exampleInputUserName">User Name</label>
-                                                    <asp:TextBox ID="exampleInputUserName" runat="server" CssClass="form-control" placeholder="User Name"></asp:TextBox>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                                    <asp:TextBox ID="exampleInputPassword2" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password"></asp:TextBox>
-
-                                                </div>
-                                                <div class="form-group">
-                                                    <asp:Button ID="login" runat="server" Text="Login" CssClass="btn btn-primary btn-block" OnClick="login_Click" />
-                                                </div>
+                            <li>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form" role="form" id="login-nav">
+                                            <div class="form-group">
+                                                <label class="sr-only" for="exampleInputUserName">User Name</label>
+                                                <input class="form-control" id="exampleInputUserName" placeholder="User Name" type="text"/>
                                             </div>
-                                            <div class="bottom text-center">
-                                                New here ? <a href="Registro.aspx"><b>Join Us</b></a>
+                                            <div class="form-group">
+                                                <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                                <input class="form-control" id="exampleInputPassword2" placeholder="Password" type="password" />
+                                            </div>
+                                            <div class="form-group">
+                                                <button class="btn btn-primary btn-block" id="btn_login">Login</button>
                                             </div>
                                         </div>
-                                    </li>
-
-                                <li>
-
-                                    <asp:LoginName ID="LoginName1" runat="server" />
+                                    </div>
+                                    <div class="bottom text-center">
+                                        New here? <a href="Registro.aspx"><b>Join Us</b></a>
+                                    </div>
+                                </div>
+                                <form runat="server" class="bottom text-center">
+                                    <asp:LoginName ID="LoginName1" runat="server"/>
                                     <asp:LoginStatus ID="LoginStatus1" runat="server" />
-                                </li>
-                            </form>
-
+                                </form>
+                            </li>                            
                         </ul>
                     </li>
-
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -171,24 +162,6 @@
                 }
             });
 
-            function buscar() {
-                var consulta = $("#search").val();
-                if (consulta != '') {
-                    window.location.href = "Busqueda.aspx?consulta=" + consulta;
-                }
-            }
-
-            $("#buscar").click(function () {
-                buscar();
-            });
-
-            $('#search').on('keypress', function (event) {
-                if (event.which === 13) {
-                    buscar();
-                    return false;
-                }
-            });
-
             var items = sessionStorage.getItem("ItemsCarrito");
             if (items == null) {
                 $("#carrito").text("0");
@@ -196,6 +169,46 @@
                 var arrayItems = JSON.parse(items);
                 $("#carrito").text(arrayItems.length);
             }
+        });
+
+        function buscar() {
+            var consulta = $("#search").val();
+            if (consulta != '') {
+                window.location.href = "Busqueda.aspx?consulta=" + consulta;
+            }
+        }
+
+        $("#buscar").click(function () {
+            buscar();
+        });
+
+        $('#search').on('keypress', function (event) {
+            if (event.which === 13) {
+                buscar();
+                return false;
+            }
+        });
+
+        $("#btn_login").click(function () {
+            var user = $("#exampleInputUserName").val();
+            var password = $("#exampleInputPassword2").val();
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/Login",
+                data: '{user:"' + user + '", password:"' + password + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.d == true) {
+                        window.location.reload(false);
+                    } else {
+                        alert("Usuario o contraseña incorrectos");
+                    }
+                },
+                error: function (response) {
+                    //Mostrar un mensaje de error
+                }
+            });
         });
     </script>
 

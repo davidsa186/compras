@@ -31,5 +31,16 @@ namespace CarritoDeCompras
             CT.Producto controladora = new CT.Producto();
             return controladora.GetProductoDefault();            
         }
+
+        [System.Web.Services.WebMethod]
+        public static bool Login(string user, string password)
+        {
+            var valid = Membership.ValidateUser(user, password);
+            if (valid == true)
+            {
+                FormsAuthentication.SetAuthCookie(user, true);
+            }
+            return valid;
+        }
     }
 }
