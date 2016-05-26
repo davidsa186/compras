@@ -14,7 +14,16 @@ namespace CarritoDeCompras
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                Panel_Login.Visible = false;
+                Panel_Status.Visible = true;
+            }
+            else
+            {
+                Panel_Login.Visible = true;
+                Panel_Status.Visible = false;
+            }
         }
         
     }
