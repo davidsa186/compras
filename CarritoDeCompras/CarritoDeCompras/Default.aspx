@@ -5,9 +5,7 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-md-9">
-
         <div class="row carousel-holder">
-
             <div class="col-md-12">
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
@@ -27,7 +25,6 @@
                     </a>
                 </div>
             </div>
-
         </div>
 
         <div class="row" id="index">
@@ -41,10 +38,11 @@
     <script>
         $(document).ready(function () {
             cargar('Default.aspx/GetProductoDefault', '{}');
+
             $.ajax({
                 type: "POST",
                 url: 'Default.aspx/GetProductoDefault',
-                data: '{}',
+                data: {},
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {

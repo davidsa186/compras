@@ -22,7 +22,7 @@ namespace CarritoDeCompras
                 
         private void MostrarCategoria()
         {
-            CT.Categorias controladora = new CT.Categorias();
+            CT.Categoria controladora = new CT.Categoria();
             int Id_Categoria = int.Parse(id);
             EN.Categoria categoria = controladora.ListaCategorias(Id_Categoria).FirstOrDefault();
             lblCategoria.Text = categoria.Nombre_Categoria;
@@ -33,8 +33,7 @@ namespace CarritoDeCompras
         {
             int Id_Categoria = int.Parse(id);
             CT.Producto controladora = new CT.Producto();
-            var producto = controladora.GetProductoCategoria(Id_Categoria);
-            return producto;
+            return controladora.GetProductoCategoria(Id_Categoria);            
         }
     }
 }

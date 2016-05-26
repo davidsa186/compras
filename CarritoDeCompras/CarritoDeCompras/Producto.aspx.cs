@@ -21,9 +21,9 @@ namespace CarritoDeCompras
         [System.Web.Services.WebMethod]
         public static EN.Producto GetProducto()
         {
-            int IdProducto = int.Parse(id);
+            int Id_Producto = int.Parse(id);
             CT.Producto controladora = new CT.Producto();            
-            return controladora.GetProducto(IdProducto);
+            return controladora.GetProducto(Id_Producto);
         }     
     }
 }

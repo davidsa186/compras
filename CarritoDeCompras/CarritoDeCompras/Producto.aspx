@@ -5,7 +5,6 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-md-9">
-
         <div class="thumbnail">
             <img class="img-responsive" id="img_producto" alt="">
             <div class="caption-full">
@@ -35,13 +34,11 @@
         </div>
 
         <div class="well">
-
-<%--            <div class="text-right">
+            <%--<div class="text-right">
                 <a class="btn btn-success">Leave a Review</a>
             </div>
 
             <hr>--%>
-
             <div class="row">
                 <div class="col-md-12">
                     <span class="glyphicon glyphicon-star"></span>
@@ -50,13 +47,12 @@
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star-empty"></span>
                     Anonymous
-                            <span class="pull-right">10 days ago</span>
+                    <span class="pull-right">10 days ago</span>
                     <p>This product was great in terms of quality. I would definitely buy another!</p>
                 </div>
             </div>
 
             <hr>
-
             <div class="row">
                 <div class="col-md-12">
                     <span class="glyphicon glyphicon-star"></span>
@@ -65,13 +61,12 @@
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star-empty"></span>
                     Anonymous
-                            <span class="pull-right">12 days ago</span>
+                    <span class="pull-right">12 days ago</span>
                     <p>I've alredy ordered another one!</p>
                 </div>
             </div>
 
             <hr>
-
             <div class="row">
                 <div class="col-md-12">
                     <span class="glyphicon glyphicon-star"></span>
@@ -80,14 +75,13 @@
                     <span class="glyphicon glyphicon-star"></span>
                     <span class="glyphicon glyphicon-star-empty"></span>
                     Anonymous
-                            <span class="pull-right">15 days ago</span>
+                    <span class="pull-right">15 days ago</span>
                     <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
                 </div>
             </div>
-
         </div>
-
     </div>
+    <p hidden="hidden" id="id_producto"></p>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="script" runat="server">
@@ -104,6 +98,7 @@
                     $("#productPrice").text("$" + response.d.Precio);
                     $("#img_producto").prop("src", response.d.Imagen);
                     $('#descripcion').text(response.d.Categoria.Descripcion);
+                    $("#id_producto").text(response.d.Id_Producto);
                 },
                 error: function (response) {
                     //Mostrar un mensaje de error
@@ -112,14 +107,18 @@
         });
 
         $("#btn_carrito").click(function () {
-            var cant = sessionStorage.getItem("Cantidad");
-            if (cant == null || cant == undefined) {
-                cant = 1;
+            var items = sessionStorage.getItem("ItemsCarrito");
+            if (items == null) {
+                var arrayItems = new Array();
             } else {
-                cant = parseInt(cant) + 1;
+                var arrayItems = JSON.parse(items);                
             }
-            sessionStorage.setItem("Cantidad", cant);
-            $("#carrito").text(cant);
+            var producto = $("#id_producto").text();
+            if ($.inArray(producto, arrayItems) == -1) {
+                arrayItems.push(producto);
+            }            
+            sessionStorage.setItem("ItemsCarrito", JSON.stringify(arrayItems));
+            $("#carrito").text(arrayItems.length);
         });
     </script>
 </asp:Content>

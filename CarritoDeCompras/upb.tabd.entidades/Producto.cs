@@ -16,5 +16,4 @@ namespace upb.tabd.entidades
         public Proveedor Proveedor { get; set; }
         public string Imagen { get; set; }
     }
-
 }

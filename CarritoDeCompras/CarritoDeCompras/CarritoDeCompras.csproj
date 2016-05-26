@@ -103,11 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Busqueda.aspx" />
+    <Content Include="Carrito.aspx" />
     <Content Include="css\login.css" />
     <Content Include="css\Search.css" />
-    <Content Include="fontsfa\css\font-awesome.css" />
-    <Content Include="fontsfa\css\font-awesome.min.css" />
-    <Content Include="fontsfa\fonts\fontawesome-webfont.svg" />
     <Content Include="images\favicon.png" />
     <Content Include="js\cargarProductos.js" />
     <Content Include="packages.config" />
@@ -116,39 +114,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-    <Content Include="fontsfa\fonts\fontawesome-webfont.eot" />
-    <Content Include="fontsfa\fonts\fontawesome-webfont.ttf" />
-    <Content Include="fontsfa\fonts\fontawesome-webfont.woff" />
-    <Content Include="fontsfa\fonts\fontawesome-webfont.woff2" />
-    <Content Include="fontsfa\fonts\FontAwesome.otf" />
-    <Content Include="fontsfa\less\animated.less" />
-    <Content Include="fontsfa\less\bordered-pulled.less" />
-    <Content Include="fontsfa\less\core.less" />
-    <Content Include="fontsfa\less\fixed-width.less" />
-    <Content Include="fontsfa\less\font-awesome.less" />
-    <Content Include="fontsfa\less\icons.less" />
-    <Content Include="fontsfa\less\larger.less" />
-    <Content Include="fontsfa\less\list.less" />
-    <Content Include="fontsfa\less\mixins.less" />
-    <Content Include="fontsfa\less\path.less" />
-    <Content Include="fontsfa\less\rotated-flipped.less" />
-    <Content Include="fontsfa\less\screen-reader.less" />
-    <Content Include="fontsfa\less\stacked.less" />
-    <Content Include="fontsfa\less\variables.less" />
-    <Content Include="fontsfa\scss\font-awesome.scss" />
-    <Content Include="fontsfa\scss\_animated.scss" />
-    <Content Include="fontsfa\scss\_bordered-pulled.scss" />
-    <Content Include="fontsfa\scss\_core.scss" />
-    <Content Include="fontsfa\scss\_fixed-width.scss" />
-    <Content Include="fontsfa\scss\_icons.scss" />
-    <Content Include="fontsfa\scss\_larger.scss" />
-    <Content Include="fontsfa\scss\_list.scss" />
-    <Content Include="fontsfa\scss\_mixins.scss" />
-    <Content Include="fontsfa\scss\_path.scss" />
-    <Content Include="fontsfa\scss\_rotated-flipped.scss" />
-    <Content Include="fontsfa\scss\_screen-reader.scss" />
-    <Content Include="fontsfa\scss\_stacked.scss" />
-    <Content Include="fontsfa\scss\_variables.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -182,6 +147,13 @@
     </Compile>
     <Compile Include="Busqueda.aspx.designer.cs">
       <DependentUpon>Busqueda.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Carrito.aspx.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Carrito.aspx.designer.cs">
+      <DependentUpon>Carrito.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

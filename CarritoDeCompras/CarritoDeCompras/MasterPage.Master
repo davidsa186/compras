@@ -23,9 +23,9 @@
 
     <!-- Custom CSS -->
     <link href="css/shop-homepage.css" rel="stylesheet">
-
     <link href="css/shop-item.css" rel="stylesheet">
     <link href="css/login.css" rel="stylesheet" />
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -37,10 +37,9 @@
     </asp:ContentPlaceHolder>
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
+
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -48,17 +47,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-
                 <a class="navbar-brand" href="Default.aspx">PlatiniExpress</a>
-
-                <%--Mirar como meter un icono--%>
             </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <form class="navbar-form navbar-left" role="search">
                     <div class="form-group has-feedback">
-                        <input type="text" class="form-control" id="search" placeholder="Buscar">
+                        <input type="text" class="form-control" id="search" placeholder="Buscar" />
                         <button type="button" class="button button-default" id="buscar">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
@@ -68,25 +63,23 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-                        <ul id="login-dp" class="dropdown-menu">
-                            <form runat="server">
+                        <form runat="server">
+                            <ul id="login-dp" class="dropdown-menu">
                                 <li>
                                     <div class="row">
                                         <div class="col-md-12">
-                                            <form class="form" role="form" accept-charset="UTF-8" id="login-nav">
-                                                <div class="form-group">
-                                                    <label class="sr-only" for="exampleInputUserName">User Name</label>
-                                                    <asp:TextBox ID="exampleInputUserName" runat="server" CssClass="form-control" placeholder="User Name"></asp:TextBox>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                                    <asp:TextBox ID="exampleInputPassword2" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password" ></asp:TextBox>
+                                            <div class="form-group">
+                                                <label class="sr-only" for="exampleInputUserName">User Name</label>
+                                                <asp:TextBox ID="exampleInputUserName" runat="server" CssClass="form-control" placeholder="User Name"></asp:TextBox>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                                <asp:TextBox ID="exampleInputPassword2" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password"></asp:TextBox>
 
-                                                </div>
-                                                <div class="form-group">
-                                                    <asp:Button ID="login" runat="server" Text="Login" CssClass="btn btn-primary btn-block" OnClick="login_Click"/>
-                                                </div>
-                                            </form>
+                                            </div>
+                                            <div class="form-group">
+                                                <asp:Button ID="login" runat="server" Text="Login" CssClass="btn btn-primary btn-block" OnClick="login_Click" />
+                                            </div>
                                         </div>
                                         <div class="bottom text-center">
                                             New here ? <a href="Registro.aspx"><b>Join Us</b></a>
@@ -97,14 +90,14 @@
                                     <asp:LoginName ID="LoginName1" runat="server" />
                                     <asp:LoginStatus ID="LoginStatus1" runat="server" />
                                 </li>
-                            </form>
-                        </ul>
+                            </ul>
+                        </form>
                     </li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a aria-hidden="true" href="#">
+                        <a aria-hidden="true" href="Carrito.aspx">
                             <span class="glyphicon glyphicon-shopping-cart"></span>
                             <span class="badge" id="carrito"></span>
                         </a>
@@ -117,33 +110,24 @@
                     </li>
                 </ul>
             </div>
-
-            <!-- /.navbar-collapse -->
         </div>
-        <!-- /.container -->
     </nav>
 
-    <!-- Page Content -->
     <div class="container">
-
         <div class="row">
             <br />
             <div class="col-md-3">
                 <p class="lead">Categorías</p>
-                <div class="list-group" id="categoria">
-                    <%--<a href="#" class="list-group-item">Category 1</a>--%>
-                </div>
+                <div class="list-group" id="categoria"></div>
             </div>
 
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
         </div>
     </div>
+
     <div class="container">
-
         <hr>
-
-        <!-- Footer -->
         <footer>
             <div class="row">
                 <div class="col-lg-12">
@@ -151,9 +135,7 @@
                 </div>
             </div>
         </footer>
-
     </div>
-    <!-- /.container -->
 
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
@@ -166,11 +148,10 @@
             $.ajax({
                 type: "POST",
                 url: "Default.aspx/GetCategorias",
-                data: '{id: -1}',
+                data: '{i: -1}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (response) {
-                    console.log(response);
+                success: function (response) {                    
                     for (var i = 0; i < response.d.length; i++) {
                         var categoria = response.d[i].Nombre_Categoria;
                         var id = response.d[i].Id_Categoria;
@@ -200,13 +181,14 @@
                 }
             });
 
-            var cant = sessionStorage.getItem("Cantidad");
-            if (cant == null) {
-                sessionStorage.setItem("Cantidad", "0");
-                cant = 0;
+            var items = sessionStorage.getItem("ItemsCarrito");
+            if (items == null) {
+                $("#carrito").text("0");
+            } else {
+                var arrayItems = JSON.parse(items);
+                $("#carrito").text(arrayItems.length);
             }
-            $("#carrito").text(cant);
-        });  
+        });
     </script>
 
     <asp:ContentPlaceHolder ID="script" runat="server">

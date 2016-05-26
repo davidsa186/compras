@@ -18,20 +18,18 @@ namespace CarritoDeCompras
         }
 
         [System.Web.Services.WebMethod]
-        public static List<EN.Categoria> GetCategorias(int id)
+        public static List<EN.Categoria> GetCategorias(int i)
         {
-            CT.Categorias controladora = new CT.Categorias();
-            var lista = controladora.ListaCategorias(id);
-            return lista;
+            CT.Categoria controladora = new CT.Categoria();
+            var categorias = controladora.ListaCategorias(i);
+            return categorias;
         }
 
         [System.Web.Services.WebMethod]
         public static List<EN.Producto> GetProductoDefault()
         {
             CT.Producto controladora = new CT.Producto();
-            var lista = controladora.GetProductoDefault();
-            return lista;
+            return controladora.GetProductoDefault();            
         }
-
     }
 }

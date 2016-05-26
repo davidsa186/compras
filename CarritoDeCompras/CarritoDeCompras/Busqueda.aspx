@@ -5,14 +5,12 @@
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="col-md-9">
-
         <div class="row" id="index">
             <div class="container">
                 <h3>Búsqueda: <small><asp:Label ID="lblBusqueda" runat="server"></asp:Label></small></h3>
             </div>
             <hr />
-        </div>
-        
+        </div>        
     </div>
 </asp:Content>
 

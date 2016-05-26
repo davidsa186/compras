@@ -8,31 +8,27 @@ using EN = upb.tabd.entidades;
 
 namespace upb.tabd.controladora
 {
-    public class Categorias
+    public class Categoria
     {
         private BR.TABD_FinalEntities db = new BR.TABD_FinalEntities();
 
         public List<EN.Categoria> ListaCategorias(int i)
         {
-
             List<EN.Categoria> listado = new List<EN.Categoria>();
+
             try
             {
-
                 var resultado = from b in db.Categoria
                                 where b.Id_Categoria == i || i == -1
                                 select new { b.Id_Categoria, b.Nombre_Categoria };
 
-
-
                 foreach (var item in resultado)
                 {
+                    EN.Categoria categoria = new EN.Categoria();
 
-                    EN.Categoria categorias = new EN.Categoria();
-
-                    categorias.Id_Categoria = item.Id_Categoria;
-                    categorias.Nombre_Categoria = item.Nombre_Categoria;
-                    listado.Add(categorias);
+                    categoria.Id_Categoria = item.Id_Categoria;
+                    categoria.Nombre_Categoria = item.Nombre_Categoria;
+                    listado.Add(categoria);
                 }
             }
             catch (Exception ex)

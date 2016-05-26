@@ -25,78 +25,79 @@ namespace upb.tabd.controladora
             producto.Imagen = p.Imagen;
             producto.Stock = p.Stock;
 
-
             return producto;
         }
 
         public List<EN.Producto> GetProductoDefault()
         {
-            var list = db.Producto.Take(6);
-            List<EN.Producto> result = new List<EN.Producto>();
-            foreach (var p in list)
+            var listado = db.Producto.Take(6);
+            List<EN.Producto> resultado = new List<EN.Producto>();
+            foreach (var item in listado)
             {
                 EN.Producto producto = new EN.Producto();
-                producto.Id_Producto = p.Id_Producto;
-                producto.Nombre_Producto = p.Nombre_Producto;
+                producto.Id_Producto = item.Id_Producto;
+                producto.Nombre_Producto = item.Nombre_Producto;
                 //Categoria = p.Categoria,
-                producto.Precio = p.Precio;
-                producto.Proveedor = new EN.Proveedor { Id_Proveedor = p.Proveedor.Id_Proveedor, Nombre = p.Proveedor.Nombres };
-                producto.Imagen = p.Imagen;
-                producto.Stock = p.Stock;
-                result.Add(producto);
+                producto.Precio = item.Precio;
+                producto.Proveedor = new EN.Proveedor { Id_Proveedor = item.Proveedor.Id_Proveedor, Nombre = item.Proveedor.Nombres };
+                producto.Imagen = item.Imagen;
+                producto.Stock = item.Stock;
+                resultado.Add(producto);
             }
-            return result;
+            return resultado;
         }
 
         public List<EN.Producto> GetProductoCategoria(int IdCategoria)
         {
-            var list = db.Producto.Where(x => x.Id_Categoria == IdCategoria);
-            List<EN.Producto> result = new List<EN.Producto>();
-            foreach (var p in list)
+            var listado = db.Producto.Where(x => x.Id_Categoria == IdCategoria);
+            List<EN.Producto> resultado = new List<EN.Producto>();
+            foreach (var item in listado)
             {
                 EN.Producto producto = new EN.Producto();
-                producto.Id_Producto = p.Id_Producto;
-                producto.Nombre_Producto = p.Nombre_Producto;
+                producto.Id_Producto = item.Id_Producto;
+                producto.Nombre_Producto = item.Nombre_Producto;
                 //Categoria = p.Categoria,
-                producto.Precio = p.Precio;
-                producto.Proveedor = new EN.Proveedor { Id_Proveedor = p.Proveedor.Id_Proveedor, Nombre = p.Proveedor.Nombres };
-                producto.Imagen = p.Imagen;
-                producto.Stock = p.Stock;
-                result.Add(producto);
+                producto.Precio = item.Precio;
+                producto.Proveedor = new EN.Proveedor { Id_Proveedor = item.Proveedor.Id_Proveedor, Nombre = item.Proveedor.Nombres };
+                producto.Imagen = item.Imagen;
+                producto.Stock = item.Stock;
+                resultado.Add(producto);
             }
-            return result;
+            return resultado;
         }
 
         public List<EN.Producto> GetResultados(string consulta)
         {
             string[] palabras = consulta.Split();
-            List<EN.Producto> resultado = new List<EN.Producto>();
-            List<BR.Producto> seleccionados = new List<BR.Producto>();
+            List<BR.Producto> listado = new List<BR.Producto>();
+            List<EN.Producto> resultado = new List<EN.Producto>();            
+
             foreach (string p in palabras)
             {
-                var productoNombre = db.Producto.Where(x => x.Nombre_Producto.ToLower().Contains(p)).ToList();
+                var productoNombre = db.Producto.Where(x => x.Nombre_Producto.ToLower().Contains(p));
                 var categoria = db.Categoria.Where(x => x.Nombre_Categoria.ToLower() == p).FirstOrDefault();
                 
                 foreach (var item in productoNombre)
                 {
-                    if (!seleccionados.Contains(item))
+                    if (!listado.Contains(item))
                     {
-                        seleccionados.Add(item);
+                        listado.Add(item);
                     }                    
                 }
+
                 if(categoria != null){
-                    var productoCategoria = db.Producto.Where(x => x.Id_Categoria == categoria.Id_Categoria).ToList();
+                    var productoCategoria = db.Producto.Where(x => x.Id_Categoria == categoria.Id_Categoria);
                     foreach (var item in productoCategoria)
                     {
-                        if (!seleccionados.Contains(item))
+                        if (!listado.Contains(item))
                         {
-                            seleccionados.Add(item);
+                            listado.Add(item);
                         }
                     }
                 }                
             }
 
-            foreach (var item in seleccionados)
+            foreach (var item in listado)
             {
                 EN.Producto producto = new EN.Producto();
                 producto.Id_Producto = item.Id_Producto;

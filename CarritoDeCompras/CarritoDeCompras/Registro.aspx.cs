@@ -12,7 +12,6 @@ namespace CarritoDeCompras
 {
     public partial class Registro : System.Web.UI.Page
     {
-
         public static Guid userID;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -23,9 +22,8 @@ namespace CarritoDeCompras
         [System.Web.Services.WebMethod]
         public static List<EN.Ciudad> ListadoCiudades()
         {
-            CT.Ciudad control = new CT.Ciudad();
-            var ciudades = control.ListaCiudades();
-            return ciudades;
+            CT.Ciudad controladora = new CT.Ciudad();
+            return controladora.ListaCiudades();            
         }
 
         [System.Web.Services.WebMethod]
@@ -39,13 +37,12 @@ namespace CarritoDeCompras
             cliente.Nombre = nombre;
             cliente.Array_Telefonos = arrayTelefonos;
 
-
             CT.Cliente controladora = new CT.Cliente();
-            var resultado= controladora.IngresarCliente(cliente);
+            var resultado = controladora.IngresarCliente(cliente);
             return resultado;
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void Btn_Siguiente_Click(object sender, EventArgs e)
         {
             try
             {
@@ -59,10 +56,7 @@ namespace CarritoDeCompras
             catch (MembershipCreateUserException )
             {
 
-      
-               
             }
-
         }
     }
 }

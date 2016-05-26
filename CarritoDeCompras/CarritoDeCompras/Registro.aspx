@@ -7,15 +7,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Registro</title>
     <link rel="icon" type="image/png" href="/images/favicon.png" />
-    <link rel="stylesheet" href="fontsfa/css/font-awesome.min.css">
+    <link rel="stylesheet" href="fontsfa/css/font-awesome.min.css" />
     <link href="css/bootstrap.css" rel="stylesheet" />
     <link href="css/bootstrap.min.css" rel="stylesheet" />
 </head>
 <body>
-
     <div class="container">
         <div class="text-center">
-            <h1><i class="fa fa-shopping-cart" aria-hidden="true"></i>PlatiniExpress</h1>
+            <h1><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>PlatiniExpress</h1>
         </div>
 
         <h2 class="page-header">Registro de Usuarios</h2>
@@ -29,9 +28,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <form id="form1" runat="server">
-
                                 <asp:Panel ID="PanelInicial" runat="server" CssClass="col-lg-6">
-
                                     <div class="form-group">
                                         <label>Usuario</label>
                                         <asp:TextBox ID="TextBox_username" runat="server" CssClass="form-control" placeholder="EJ: Usuario1"></asp:TextBox>
@@ -49,7 +46,7 @@
                                         <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ControlToValidate="TextBox_password"></asp:RequiredFieldValidator>
                                         <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Password invalido (debe contener minimo 7 caracteres)" ValidationExpression="^([A-Za-z0-9]{7,})$" ControlToValidate="TextBox_password"></asp:RegularExpressionValidator>
                                     </div>
-                                    <asp:Button ID="Btn_Siguiente" runat="server" Text="Siguiente" CssClass="btn btn-primary" OnClick="Button1_Click" />
+                                    <asp:Button ID="Btn_Siguiente" runat="server" Text="Siguiente" CssClass="btn btn-primary" OnClick="Btn_Siguiente_Click" />
                                 </asp:Panel>
                             </form>
 
@@ -125,7 +122,7 @@
             var nombre = $("#TextBox_Nombre").val();
             var array_telefonos = [];
             $("#div_telefonos").find(".in_telefono").each(function (index) {
-                array_telefonos.push($(this).val());                
+                array_telefonos.push($(this).val());
             });
             $.ajax({
                 type: "POST",

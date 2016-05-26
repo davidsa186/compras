@@ -21,8 +21,7 @@ namespace CarritoDeCompras
         }
 
         protected void login_Click(object sender, EventArgs e)
-        {
-            
+        {            
             var valid = Membership.ValidateUser(exampleInputUserName.Text, exampleInputPassword2.Text);
             if (valid == true)
             {
