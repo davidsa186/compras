@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using CT = upb.tabd.controladora;
+using EN = upb.tabd.entidades;
 
 namespace CarritoDeCompras
 {
@@ -15,9 +17,20 @@ namespace CarritoDeCompras
         }
 
         [System.Web.Services.WebMethod]
-        public static void CargarCarrito(int[] ItemsCarrito)
+        public static List<EN.Producto>  CargarCarrito(int[] ItemsCarrito)
         {
+            CT.Producto controladora = new CT.Producto();
+            List<EN.Producto> resultado = new List<EN.Producto>();
+            if (ItemsCarrito==null)
+            {
+                resultado.DefaultIfEmpty();
+            }
+            else
+            {
+                resultado = controladora.GetProductosCarro(ItemsCarrito);
+            }
 
+            return resultado;
         }
     }
 }

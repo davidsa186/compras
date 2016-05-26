@@ -61,38 +61,46 @@
                 </form>
                 <%--login--%>
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
-                        <form runat="server">
-                            <ul id="login-dp" class="dropdown-menu">
-                                <li>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label class="sr-only" for="exampleInputUserName">User Name</label>
-                                                <asp:TextBox ID="exampleInputUserName" runat="server" CssClass="form-control" placeholder="User Name"></asp:TextBox>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                                <asp:TextBox ID="exampleInputPassword2" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password"></asp:TextBox>
 
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+
+                        <ul id="login-dp" class="dropdown-menu">
+                            <form runat="server">
+                             
+                                    <li>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="exampleInputUserName">User Name</label>
+                                                    <asp:TextBox ID="exampleInputUserName" runat="server" CssClass="form-control" placeholder="User Name"></asp:TextBox>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                                    <asp:TextBox ID="exampleInputPassword2" runat="server" CssClass="form-control" placeholder="Password" TextMode="Password"></asp:TextBox>
+
+                                                </div>
+                                                <div class="form-group">
+                                                    <asp:Button ID="login" runat="server" Text="Login" CssClass="btn btn-primary btn-block" OnClick="login_Click" />
+                                                </div>
                                             </div>
-                                            <div class="form-group">
-                                                <asp:Button ID="login" runat="server" Text="Login" CssClass="btn btn-primary btn-block" OnClick="login_Click" />
+                                            <div class="bottom text-center">
+                                                New here ? <a href="Registro.aspx"><b>Join Us</b></a>
                                             </div>
                                         </div>
-                                        <div class="bottom text-center">
-                                            New here ? <a href="Registro.aspx"><b>Join Us</b></a>
-                                        </div>
-                                    </div>
-                                </li>
+                                    </li>
+
                                 <li>
+
                                     <asp:LoginName ID="LoginName1" runat="server" />
                                     <asp:LoginStatus ID="LoginStatus1" runat="server" />
                                 </li>
-                            </ul>
-                        </form>
+                            </form>
+
+                        </ul>
                     </li>
+
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
@@ -127,7 +135,7 @@
     </div>
 
     <div class="container">
-        <hr>
+        <hr />
         <footer>
             <div class="row">
                 <div class="col-lg-12">
@@ -151,7 +159,7 @@
                 data: '{i: -1}',
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
-                success: function (response) {                    
+                success: function (response) {
                     for (var i = 0; i < response.d.length; i++) {
                         var categoria = response.d[i].Nombre_Categoria;
                         var id = response.d[i].Id_Categoria;

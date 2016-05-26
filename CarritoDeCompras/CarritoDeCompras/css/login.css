@@ -1,8 +1,4 @@
-﻿body{
-     /*background-image:url('http://assets.tumblr.com/images/register_login/light6.png');*/
-}
-
-#login-dp{
+﻿#login-dp{
     min-width: 250px;
     padding: 14px 14px 0;
     overflow:hidden;

@@ -14,24 +14,24 @@ namespace CarritoDeCompras
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (Request.IsAuthenticated && !String.IsNullOrEmpty(Request["ReturnUrl"]))
-            //{
-            //    //Response.Redirect("Default.aspx");
-            //}
+            if (Request.IsAuthenticated && !String.IsNullOrEmpty(Request["ReturnUrl"]))
+            {
+                //Response.Redirect("Default.aspx");
+            }
         }
 
         protected void login_Click(object sender, EventArgs e)
-        {            
+        {
+
             var valid = Membership.ValidateUser(exampleInputUserName.Text, exampleInputPassword2.Text);
             if (valid == true)
             {
+                //no devulve true 
                 FormsAuthentication.SetAuthCookie(exampleInputUserName.Text, true);
                 Response.Redirect("Default.aspx");
-            }
-            else
-            {
                 
-            }           
+            }
+            
         }
     }
 }
