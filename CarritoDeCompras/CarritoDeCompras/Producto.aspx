@@ -15,7 +15,7 @@
                     <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                     <span>Añadir al carrito</span>
                 </button>                
-                <button type="button" class="btn btn-default pull-right" aria-label="Añadir a la lista de deseos">
+                <button type="button" class="btn btn-default pull-right" id="btn_lista" aria-label="Añadir a la lista de deseos">
                     <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                     <span>Añadir a la lista de deseos</span>
                 </button>
@@ -119,6 +119,26 @@
             }            
             sessionStorage.setItem("ItemsCarrito", JSON.stringify(arrayItems));
             $("#carrito").text(arrayItems.length);
+        });
+
+        $("#btn_lista").click(function () {            
+            $.ajax({
+                type: "POST",
+                url: "Producto.aspx/AgregarALista",
+                data: {},
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.d == true) {
+                        alert("ok");
+                    } else {
+                        alert("Debe iniciar sesión!");
+                    }
+                },
+                error: function (response) {
+                    //Mostrar un mensaje de error
+                }
+            });
         });
     </script>
 </asp:Content>

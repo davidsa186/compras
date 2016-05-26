@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Web.Security;
 using CT = upb.tabd.controladora;
 using EN = upb.tabd.entidades;
 
@@ -31,6 +32,25 @@ namespace CarritoDeCompras
             }
 
             return resultado;
+        }
+
+        [System.Web.Services.WebMethod]
+        public static int Comprar(int totalNeto, List<EN.DetalleFactura> productos)
+        {
+            int idFactura = -1;
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                Guid Id_Cliente = (Guid)Membership.GetUser(HttpContext.Current.User.Identity.Name).ProviderUserKey;
+                EN.Factura factura = new EN.Factura
+                {
+                    Id_Cliente = Id_Cliente,
+                    Descuento = 10,
+                    Total_Neto = totalNeto
+                };
+                CT.Factura controladora = new CT.Factura();
+                idFactura = controladora.CrearFactura(factura, productos);
+            }
+            return idFactura;
         }
     }
 }

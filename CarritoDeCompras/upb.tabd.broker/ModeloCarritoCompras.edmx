@@ -34,7 +34,7 @@
           <Key>
             <PropertyRef Name="Id_Detalle" />
           </Key>
-          <Property Name="Id_Detalle" Type="int" Nullable="false" />
+          <Property Name="Id_Detalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Id_Factura" Type="int" Nullable="false" />
           <Property Name="Id_Producto" Type="int" Nullable="false" />
           <Property Name="Cantidad" Type="int" Nullable="false" />
@@ -44,7 +44,7 @@
           <Key>
             <PropertyRef Name="Id_Factura" />
           </Key>
-          <Property Name="Id_Factura" Type="int" Nullable="false" />
+          <Property Name="Id_Factura" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Fecha" Type="date" Nullable="false" />
           <Property Name="Id_Cliente" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Total_Neto" Type="int" Nullable="false" />

@@ -24,6 +24,23 @@ namespace CarritoDeCompras
             int Id_Producto = int.Parse(id);
             CT.Producto controladora = new CT.Producto();            
             return controladora.GetProducto(Id_Producto);
-        }     
+        }
+
+        [System.Web.Services.WebMethod]
+        public static bool AgregarALista()
+        {
+            if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                int IdProducto = int.Parse(id);
+                string IdUsuario = HttpContext.Current.User.Identity.Name;
+                CT.Mongo controladora = new CT.Mongo();
+                controladora.AgregarALista(IdUsuario, IdProducto);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }
