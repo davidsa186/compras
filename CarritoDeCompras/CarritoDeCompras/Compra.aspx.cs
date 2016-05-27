@@ -35,15 +35,18 @@ namespace CarritoDeCompras
             gridFactura.DataBind();
         }
 
-        protected void LinkButton2_Command(object sender, CommandEventArgs e)
+        public override void VerifyRenderingInServerForm(Control control)
         {
-           
+            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
+               server control at run time. */
+        }
+
+        protected void LinkButton2_Command(object sender, CommandEventArgs e)
+        {           
             string[] arg = new string[2];
             arg = e.CommandArgument.ToString().Split(';');
             string Id_Producto = arg[0];
             string Nombre_Producto = arg[1];
-
-
 
             lblId_Producto.Text = Id_Producto;
             lblNombre_Producto.Text = Nombre_Producto;

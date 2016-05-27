@@ -22,8 +22,13 @@ namespace CarritoDeCompras
         [System.Web.Services.WebMethod]
         public static List<EN.Producto> Resultados()
         {
-            if(consulta != null && consulta != "")
+            if (consulta != null && consulta != "")
             {
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    CT.Mongo controlMongo = new CT.Mongo();
+                    controlMongo.AgregarABusqueda(HttpContext.Current.User.Identity.Name, consulta);
+                }
                 consulta = consulta.ToLower();
                 CT.Producto controladora = new CT.Producto();
                 return controladora.GetResultados(consulta);

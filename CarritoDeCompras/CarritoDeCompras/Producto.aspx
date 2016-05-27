@@ -10,14 +10,15 @@
             <div class="caption-full">
                 <h4 class="pull-right" id="productPrice"></h4>
                 <h4 id="productName"></h4>
-                <p id="descripcion"></p>                
+                <p id="descripcion"></p>   
+                <p id="stock"></p>               
                 <button type="button" class="btn btn-default" id="btn_carrito">
                     <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
-                    <span>Añadir al carrito</span>
+                    <span>Agregar al carrito</span>
                 </button>                
-                <button type="button" class="btn btn-default pull-right" id="btn_lista" aria-label="Añadir a la lista de deseos">
+                <button type="button" class="btn btn-default pull-right" id="btn_lista">
                     <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
-                    <span>Añadir a la lista de deseos</span>
+                    <span>Agregar a la lista de deseos</span>
                 </button>
             </div>
             <div class="ratings">
@@ -95,10 +96,11 @@
                 dataType: "json",
                 success: function (response) {
                     $("#productName").text(response.d.Nombre_Producto);
-                    $("#productPrice").text("$" + response.d.Precio);
+                    $("#productPrice").text("Valor: $" + response.d.Precio);
                     $("#img_producto").prop("src", response.d.Imagen);
                     $('#descripcion').text(response.d.Categoria.Descripcion);
                     $("#id_producto").text(response.d.Id_Producto);
+                    $("#stock").text("Cantidad en Stock: "+response.d.Stock);
                 },
                 error: function (response) {
                     //Mostrar un mensaje de error
@@ -130,7 +132,7 @@
                 dataType: "json",
                 success: function (response) {
                     if (response.d == true) {
-                        alert("ok");
+                        alert("Agregado a la Lista de Deseos.");
                     } else {
                         alert("Debe iniciar sesión!");
                     }

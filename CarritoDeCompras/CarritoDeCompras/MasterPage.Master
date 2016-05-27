@@ -51,14 +51,14 @@
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <form class="navbar-form navbar-left" role="search">
+                <div class="navbar-form navbar-left" role="search">
                     <div class="form-group has-feedback">
                         <input type="text" class="form-control" id="search" placeholder="Buscar" />
                         <button type="button" class="button button-default" id="buscar">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </div>
-                </form>
+                </div>
                 <%--login--%>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -104,7 +104,7 @@
                         </a>
                     </li>
                     <li>
-                        <a aria-hidden="true" href="#">
+                        <a aria-hidden="true" href="ListaDeseos.aspx">
                             <span class="glyphicon glyphicon-heart-empty"></span>
                             <span>Lista de deseos</span>
                         </a>

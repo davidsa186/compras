@@ -113,7 +113,7 @@ namespace upb.tabd.controladora
             return resultado;
         }
 
-        public List<EN.Producto> GetProductosCarro(int[] ItemsCarrito) {
+        public List<EN.Producto> GetProductosLista(List<int> ItemsCarrito) {
             List<EN.Producto> resultado = new List<EN.Producto>();
             foreach (int i in ItemsCarrito)
             {

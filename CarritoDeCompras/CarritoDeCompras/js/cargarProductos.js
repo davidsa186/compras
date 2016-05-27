@@ -13,7 +13,8 @@
                 div += '<img class="img_small" src="' + response.d[i].Imagen + '" alt="">';
                 div += '<div class="caption">';
                 div += '<h4><a href="Producto.aspx?id=' + response.d[i].Id_Producto + '">' + response.d[i].Nombre_Producto + '</a></h4>';
-                div += '<h4>$' + response.d[i].Precio + '</h4>';
+                div += '<h4>Valor: $' + response.d[i].Precio + '</h4>';
+                div += '<h5>Cantidad en Stock: ' + response.d[i].Stock + '</h5>';
                 div += '<p>Proveedor: ' + response.d[i].Proveedor.Nombre + '</p>';
                 div += '</div></div>';
                 $("#index").append(div);

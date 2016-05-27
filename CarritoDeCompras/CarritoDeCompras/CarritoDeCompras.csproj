@@ -109,6 +109,7 @@
     <Content Include="css\Search.css" />
     <Content Include="images\favicon.png" />
     <Content Include="js\cargarProductos.js" />
+    <Content Include="ListaDeseos.aspx" />
     <Content Include="packages.config" />
     <Content Include="MasterPage.Master" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
@@ -169,6 +170,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListaDeseos.aspx.cs">
+      <DependentUpon>ListaDeseos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListaDeseos.aspx.designer.cs">
+      <DependentUpon>ListaDeseos.aspx</DependentUpon>
     </Compile>
     <Compile Include="MasterPage.Master.cs">
       <DependentUpon>MasterPage.Master</DependentUpon>

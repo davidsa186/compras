@@ -18,7 +18,7 @@ namespace CarritoDeCompras
         }
 
         [System.Web.Services.WebMethod]
-        public static List<EN.Producto>  CargarCarrito(int[] ItemsCarrito)
+        public static List<EN.Producto>  CargarCarrito(List<int> ItemsCarrito)
         {
             CT.Producto controladora = new CT.Producto();
             List<EN.Producto> resultado = new List<EN.Producto>();
@@ -28,7 +28,7 @@ namespace CarritoDeCompras
             }
             else
             {
-                resultado = controladora.GetProductosCarro(ItemsCarrito);
+                resultado = controladora.GetProductosLista(ItemsCarrito);
             }
 
             return resultado;
@@ -37,20 +37,31 @@ namespace CarritoDeCompras
         [System.Web.Services.WebMethod]
         public static int Comprar(int totalNeto, List<EN.DetalleFactura> productos)
         {
-            int idFactura = -1;
-            if (HttpContext.Current.User.Identity.IsAuthenticated)
-            {
-                Guid Id_Cliente = (Guid)Membership.GetUser(HttpContext.Current.User.Identity.Name).ProviderUserKey;
-                EN.Factura factura = new EN.Factura
-                {
-                    Id_Cliente = Id_Cliente,
-                    Descuento = 10,
-                    Total_Neto = totalNeto
-                };
-                CT.Factura controladora = new CT.Factura();
-                idFactura = controladora.CrearFactura(factura, productos);
+            if(productos.Count == 0)
+            {                
+                throw new Exception("Debe tener algo en el carrito!");
             }
-            return idFactura;
+            try
+            {
+                int idFactura = -1;
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    Guid Id_Cliente = (Guid)Membership.GetUser(HttpContext.Current.User.Identity.Name).ProviderUserKey;
+                    EN.Factura factura = new EN.Factura
+                    {
+                        Id_Cliente = Id_Cliente,
+                        Descuento = 10,
+                        Total_Neto = totalNeto
+                    };
+                    CT.Factura controladora = new CT.Factura();
+                    idFactura = controladora.CrearFactura(factura, productos);
+                }
+                return idFactura;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

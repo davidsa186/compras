@@ -58,15 +58,6 @@ namespace CarritoDeCompras {
         protected global::System.Web.UI.WebControls.Label lblNombre_Producto;
         
         /// <summary>
-        /// Control txtCalificacion.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCalificacion;
-        
-        /// <summary>
         /// Control txtComentario.
         /// </summary>
         /// <remarks>
@@ -82,7 +73,7 @@ namespace CarritoDeCompras {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnEnviar;
+        protected global::System.Web.UI.WebControls.LinkButton btnEnviar;
         
         /// <summary>
         /// Control btnCancelar.
@@ -91,6 +82,6 @@ namespace CarritoDeCompras {
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCancelar;
+        protected global::System.Web.UI.WebControls.LinkButton btnCancelar;
     }
 }
