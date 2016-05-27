@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Producto.aspx.cs" Inherits="CarritoDeCompras.Producto" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <title>Productos</title>
+    <title>Productos</title>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -11,12 +11,12 @@
             <div class="caption-full">
                 <h4 class="pull-right" id="productPrice"></h4>
                 <h4 id="productName"></h4>
-                <p id="descripcion"></p>   
-                <p id="stock"></p>               
+                <p id="descripcion"></p>
+                <p id="stock"></p>
                 <button type="button" class="btn btn-default" id="btn_carrito">
                     <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
                     <span>Agregar al carrito</span>
-                </button>                
+                </button>
                 <button type="button" class="btn btn-default pull-right" id="btn_lista">
                     <span class="glyphicon glyphicon-list" aria-hidden="true"></span>
                     <span>Agregar a la lista de deseos</span>
@@ -30,7 +30,7 @@
 
         <div class="well">
             <h4>Calificaciones</h4>
-            <hr />            
+            <hr />
         </div>
     </div>
     <p hidden="hidden" id="id_producto"></p>
@@ -51,13 +51,13 @@
                     $("#img_producto").prop("src", response.d.Imagen);
                     $('#descripcion').text(response.d.Categoria.Descripcion);
                     $("#id_producto").text(response.d.Id_Producto);
-                    $("#stock").text("Cantidad en Stock: "+response.d.Stock);
+                    $("#stock").text("Cantidad en Stock: " + response.d.Stock);
                 },
                 error: function (response) {
                     //Mostrar un mensaje de error
                 }
             });
-         
+
             $.ajax({
                 type: "POST",
                 url: "Producto.aspx/GetComentarios",
@@ -67,7 +67,7 @@
                 success: function (response) {
                     $("#numero_comentarios").text(response.d.length + " comentarios");
                     var promedio = 0;
-                    for (var i = 0; i < response.d.length; i++) {                        
+                    for (var i = 0; i < response.d.length; i++) {
                         promedio += response.d[i].Puntuacion;
                         var div = '<div class="row"><div class="col-md-12">';
                         var full = response.d[i].Puntuacion;
@@ -107,12 +107,12 @@
             if (items == null) {
                 var arrayItems = new Array();
             } else {
-                var arrayItems = JSON.parse(items);                
+                var arrayItems = JSON.parse(items);
             }
             var producto = $("#id_producto").text();
             if ($.inArray(producto, arrayItems) == -1) {
                 arrayItems.push(producto);
-            }            
+            }
             sessionStorage.setItem("ItemsCarrito", JSON.stringify(arrayItems));
             $("#carrito").text(arrayItems.length);
         });

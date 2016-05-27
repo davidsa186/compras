@@ -29,7 +29,7 @@ namespace CarritoDeCompras
         public static List<EN.Producto> GetProductoDefault()
         {
             CT.Producto controladora = new CT.Producto();
-            return controladora.GetProductoDefault();            
+            return controladora.GetProductoDefault();
         }
 
         [System.Web.Services.WebMethod]

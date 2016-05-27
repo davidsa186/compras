@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CarritoDeCompras.Default" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <title>Platini Express</title>
+    <title>Platini Express</title>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -15,7 +15,7 @@
                         <li data-target="#carousel-example-generic" data-slide-to="2"></li>
                         <li data-target="#carousel-example-generic" data-slide-to="3"></li>
                         <li data-target="#carousel-example-generic" data-slide-to="4"></li>
-                        <li data-target="#carousel-example-generic" data-slide-to="5"></li>                        
+                        <li data-target="#carousel-example-generic" data-slide-to="5"></li>
                     </ol>
                     <div class="carousel-inner"></div>
                     <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -54,7 +54,7 @@
                             div = '<div class="item active">';
                         } else {
                             div = '<div class="item">';
-                        }                        
+                        }
                         div += '<img class="slide-image" src="' + response.d[i].Imagen + '" alt=""></div>';
                         $(".carousel-inner").append(div);
                     }

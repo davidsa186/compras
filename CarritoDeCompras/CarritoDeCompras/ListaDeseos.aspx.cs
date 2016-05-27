@@ -32,7 +32,6 @@ namespace CarritoDeCompras
             }
         }
         
-
         [System.Web.Services.WebMethod]
         public static void EliminardeLista(int id_producto)
         {
@@ -40,6 +39,5 @@ namespace CarritoDeCompras
             controlMongo.EliminarDeLista(HttpContext.Current.User.Identity.Name, id_producto);
            
         }
-
     }
 }

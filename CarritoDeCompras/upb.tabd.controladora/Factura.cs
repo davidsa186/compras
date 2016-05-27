@@ -11,7 +11,6 @@ namespace upb.tabd.controladora
 {
     public class Factura
     {
-
         private BR.TABD_FinalEntities db = new BR.TABD_FinalEntities();
         public int CrearFactura(EN.Factura facturita, List<EN.DetalleFactura> detalle)
         {
@@ -56,7 +55,8 @@ namespace upb.tabd.controladora
             }
         }
 
-        public EN.Factura ConsultarFactura(int id_factura) {
+        public EN.Factura ConsultarFactura(int id_factura)
+        {
             BR.Factura consulta = db.Factura.Where(x => x.Id_Factura == id_factura).FirstOrDefault();
 
             EN.Factura factura = new EN.Factura();

@@ -31,10 +31,9 @@ namespace CarritoDeCompras
             CT.Factura control = new CT.Factura();
             var listaProductos = control.ConsultarFactura(id_factura);
 
-            LblTotalNeto.Text = "$ "+listaProductos.Total_Neto.ToString();
-            lblDescuento.Text = listaProductos.Descuento.ToString()+"%";
-            lblTotal.Text = "$ " +listaProductos.Total.ToString();
-
+            LblTotalNeto.Text = "$ " + listaProductos.Total_Neto.ToString();
+            lblDescuento.Text = listaProductos.Descuento.ToString() + "%";
+            lblTotal.Text = "$ " + listaProductos.Total.ToString();
         }
 
         public void ConsultarDetalleFactura(int id_factura)
@@ -54,7 +53,7 @@ namespace CarritoDeCompras
         }
 
         protected void LinkButton2_Command(object sender, CommandEventArgs e)
-        {           
+        {
             string[] arg = new string[2];
             arg = e.CommandArgument.ToString().Split(';');
             string Id_Producto = arg[0];
@@ -63,8 +62,9 @@ namespace CarritoDeCompras
             lblId_Producto.Text = Id_Producto;
             lblNombre_Producto.Text = Nombre_Producto;
             panel_grid.Visible = false;
-            panel_comentarios.Visible = true;            
+            panel_comentarios.Visible = true;
         }
+
         [System.Web.Services.WebMethod]
         public static void btnEnviar_Click(int id_producto, string comentario, int puntuacion)
         {
@@ -72,7 +72,7 @@ namespace CarritoDeCompras
             {
                 var nombre_usuario = HttpContext.Current.User.Identity.Name;
                 CT.Mongo controlMongo = new CT.Mongo();
-                controlMongo.AgregarCalificacion(id_producto,puntuacion,comentario,nombre_usuario);
+                controlMongo.AgregarCalificacion(id_producto, puntuacion, comentario, nombre_usuario);
 
             }
             catch (Exception ex)
@@ -84,7 +84,7 @@ namespace CarritoDeCompras
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
             panel_comentarios.Visible = false;
-            panel_grid.Visible = true;            
+            panel_grid.Visible = true;
         }
     }
 }

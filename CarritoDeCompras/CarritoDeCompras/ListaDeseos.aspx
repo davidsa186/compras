@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="ListaDeseos.aspx.cs" Inherits="CarritoDeCompras.ListaDeseos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-        <title>Lista de Deseos</title>
+    <title>Lista de Deseos</title>
 
 </asp:Content>
 
@@ -12,13 +12,11 @@
                 <h3>Lista de Deseos</h3>
             </div>
             <hr />
-        </div>        
+        </div>
     </div>
 </asp:Content>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="script" runat="server">
-    
-
     <script>
         $(document).ready(function () {
             $.ajax({
@@ -55,7 +53,7 @@
                 $.ajax({
                     type: "POST",
                     url: 'ListaDeseos.aspx/EliminardeLista',
-                    data: '{id_producto: "'+id+'"}',
+                    data: '{id_producto: "' + id + '"}',
                     contentType: "application/json; charset=utf-8",
                     dataType: "json",
                     success: function (response) {

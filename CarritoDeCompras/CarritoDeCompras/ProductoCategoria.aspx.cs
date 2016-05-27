@@ -17,9 +17,9 @@ namespace CarritoDeCompras
         protected void Page_Load(object sender, EventArgs e)
         {
             id = Request.QueryString["id"];
-            MostrarCategoria();          
+            MostrarCategoria();
         }
-                
+
         private void MostrarCategoria()
         {
             CT.Categoria controladora = new CT.Categoria();
@@ -33,7 +33,7 @@ namespace CarritoDeCompras
         {
             int Id_Categoria = int.Parse(id);
             CT.Producto controladora = new CT.Producto();
-            return controladora.GetProductoCategoria(Id_Categoria);            
+            return controladora.GetProductoCategoria(Id_Categoria);
         }
     }
 }

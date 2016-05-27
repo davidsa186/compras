@@ -18,11 +18,11 @@ namespace CarritoDeCompras
         }
 
         [System.Web.Services.WebMethod]
-        public static List<EN.Producto>  CargarCarrito(List<int> ItemsCarrito)
+        public static List<EN.Producto> CargarCarrito(List<int> ItemsCarrito)
         {
             CT.Producto controladora = new CT.Producto();
             List<EN.Producto> resultado = new List<EN.Producto>();
-            if (ItemsCarrito==null)
+            if (ItemsCarrito == null)
             {
                 resultado.DefaultIfEmpty();
             }
@@ -30,15 +30,14 @@ namespace CarritoDeCompras
             {
                 resultado = controladora.GetProductosLista(ItemsCarrito);
             }
-
             return resultado;
         }
 
         [System.Web.Services.WebMethod]
         public static int Comprar(int totalNeto, List<EN.DetalleFactura> productos)
         {
-            if(productos.Count == 0)
-            {                
+            if (productos.Count == 0)
+            {
                 throw new Exception("Debe tener algo en el carrito!");
             }
             try

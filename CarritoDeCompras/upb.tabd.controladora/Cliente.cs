@@ -25,13 +25,13 @@ namespace upb.tabd.controladora
                 clienteNuevo.Cedula = cliente.Cedula;
                 clienteNuevo.Direccion = cliente.Direccion;
                 db.Cliente.Add(clienteNuevo);
-                
+
                 foreach (int tel in cliente.Array_Telefonos)
                 {
                     BR.Telefono telefono = new BR.Telefono();
                     telefono.Id_Cliente = cliente.Id_Cliente;
                     telefono.Numero_Telefono = tel;
-                    db.Telefono.Add(telefono);                      
+                    db.Telefono.Add(telefono);
                 }
 
                 resultado = true;

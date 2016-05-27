@@ -16,7 +16,7 @@ namespace CarritoDeCompras
         protected void Page_Load(object sender, EventArgs e)
         {
             consulta = Request.QueryString["consulta"];
-            lblBusqueda.Text = consulta;            
+            lblBusqueda.Text = consulta;
         }
 
         [System.Web.Services.WebMethod]
@@ -35,6 +35,6 @@ namespace CarritoDeCompras
             }
             return null;
         }
-        
+
     }
 }

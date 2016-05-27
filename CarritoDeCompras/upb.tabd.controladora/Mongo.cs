@@ -22,7 +22,6 @@ namespace upb.tabd.controladora
         {
             var coleccion = database.GetCollection<BsonDocument>("ListaDeseos");
             var filtro = Builders<BsonDocument>.Filter.Eq("IdUsuario", IdUsuario);
-            //obtenemos el resultado
             var resultado = coleccion.Find(filtro).FirstOrDefault();
             if (resultado == null)
             {
@@ -44,7 +43,6 @@ namespace upb.tabd.controladora
         {
             var coleccion = database.GetCollection<BsonDocument>("BusquedasUsuario");
             var filtro = Builders<BsonDocument>.Filter.Eq("IdUsuario", IdUsuario);
-            //obtenemos el resultado
             var resultado = coleccion.Find(filtro).FirstOrDefault();
             if (resultado == null)
             {
@@ -80,7 +78,7 @@ namespace upb.tabd.controladora
             }
         }
 
-        //no funciona
+        //No funciona
         public void EliminarDeLista(string IdUsuario, int id_producto)
         {
             var coleccion = database.GetCollection<BsonDocument>("ListaDeseos");
@@ -117,7 +115,6 @@ namespace upb.tabd.controladora
             }
             else
             {
-
                 var documento = new BsonDocument {
                                   {"Puntuacion",puntuacion },
                                   {"Comentario",comentario },
@@ -149,7 +146,7 @@ namespace upb.tabd.controladora
             catch (Exception ex)
             {
                 throw ex;
-            }            
+            }
         }
     }
 }

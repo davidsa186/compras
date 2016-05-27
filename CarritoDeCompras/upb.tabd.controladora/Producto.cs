@@ -70,22 +70,23 @@ namespace upb.tabd.controladora
         {
             string[] palabras = consulta.Split();
             List<BR.Producto> listado = new List<BR.Producto>();
-            List<EN.Producto> resultado = new List<EN.Producto>();            
+            List<EN.Producto> resultado = new List<EN.Producto>();
 
             foreach (string p in palabras)
             {
                 var productoNombre = db.Producto.Where(x => x.Nombre_Producto.ToLower().Contains(p));
                 var categoria = db.Categoria.Where(x => x.Nombre_Categoria.ToLower() == p).FirstOrDefault();
-                
+
                 foreach (var item in productoNombre)
                 {
                     if (!listado.Contains(item))
                     {
                         listado.Add(item);
-                    }                    
+                    }
                 }
 
-                if(categoria != null){
+                if (categoria != null)
+                {
                     var productoCategoria = db.Producto.Where(x => x.Id_Categoria == categoria.Id_Categoria);
                     foreach (var item in productoCategoria)
                     {
@@ -94,7 +95,7 @@ namespace upb.tabd.controladora
                             listado.Add(item);
                         }
                     }
-                }                
+                }
             }
 
             foreach (var item in listado)
@@ -113,7 +114,8 @@ namespace upb.tabd.controladora
             return resultado;
         }
 
-        public List<EN.Producto> GetProductosLista(List<int> ItemsCarrito) {
+        public List<EN.Producto> GetProductosLista(List<int> ItemsCarrito)
+        {
             List<EN.Producto> resultado = new List<EN.Producto>();
             foreach (int i in ItemsCarrito)
             {

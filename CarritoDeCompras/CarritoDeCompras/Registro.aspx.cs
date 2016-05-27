@@ -23,7 +23,7 @@ namespace CarritoDeCompras
         public static List<EN.Ciudad> ListadoCiudades()
         {
             CT.Ciudad controladora = new CT.Ciudad();
-            return controladora.ListaCiudades();            
+            return controladora.ListaCiudades();
         }
 
         [System.Web.Services.WebMethod]
@@ -48,12 +48,12 @@ namespace CarritoDeCompras
             {
                 var mu = Membership.CreateUser(TextBox_username.Text, TextBox_password.Text, TextBox_email.Text);
                 userID = (Guid)mu.ProviderUserKey;
-                
+
                 PanelInicial.Visible = false;
                 Panel1.Visible = true;
                 Panel2.Visible = true;
             }
-            catch (MembershipCreateUserException )
+            catch (MembershipCreateUserException)
             {
 
             }

@@ -22,7 +22,7 @@ namespace CarritoDeCompras
         public static EN.Producto GetProducto()
         {
             int Id_Producto = int.Parse(id);
-            CT.Producto controladora = new CT.Producto();            
+            CT.Producto controladora = new CT.Producto();
             return controladora.GetProducto(Id_Producto);
         }
 
@@ -55,7 +55,7 @@ namespace CarritoDeCompras
             catch (Exception ex)
             {
                 throw ex;
-            }            
+            }
         }
     }
 }

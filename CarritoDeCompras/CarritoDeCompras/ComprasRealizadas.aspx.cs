@@ -41,7 +41,6 @@ namespace CarritoDeCompras
             string id = (string)e.CommandArgument;
             int Id_factura = int.Parse(id);
 
-
             Response.Redirect("FacturaCompra.aspx?id=" + Id_factura);
         }
     }

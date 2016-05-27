@@ -10,21 +10,18 @@ using EN = upb.tabd.entidades;
 namespace upb.tabd.controladora
 {
     public class DetalleFactura
-
     {
-
         private BR.TABD_FinalEntities db = new BR.TABD_FinalEntities();
         public List<EN.DetalleFactura> ObtenerFactura(int id_factura)
         {
-
             List<EN.DetalleFactura> listado = new List<EN.DetalleFactura>();
 
             try
             {
                 var resultado = from c in db.Detalle_Factura
                                 join p in db.Producto on c.Id_Producto equals p.Id_Producto
-                                where c.Id_Factura==id_factura
-                                select new { c.Id_Producto, c.Cantidad, c.Precio_Unitario,p.Nombre_Producto };
+                                where c.Id_Factura == id_factura
+                                select new { c.Id_Producto, c.Cantidad, c.Precio_Unitario, p.Nombre_Producto };
 
                 foreach (var item in resultado)
                 {
@@ -42,7 +39,6 @@ namespace upb.tabd.controladora
             }
 
             return listado;
-
         }
     }
 }
