@@ -56,7 +56,7 @@ namespace upb.tabd.controladora
                             consulta
                         }
                     }
-                };                                
+                };
                 coleccion.InsertOne(documento);
             }
             else
@@ -68,20 +68,88 @@ namespace upb.tabd.controladora
 
         public List<int> CargarListaDeseos(string IdUsuario)
         {
-            var coleccion = database.GetCollection<BsonDocument>("ListaDeseos");
-            var filtro = Builders<BsonDocument>.Filter.Eq("IdUsuario", IdUsuario);
-            return coleccion.Find(filtro).FirstOrDefault()["ProductosDeseados"].AsBsonArray.Select(p=>p.AsInt32).ToList();
+            try
+            {
+                var coleccion = database.GetCollection<BsonDocument>("ListaDeseos");
+                var filtro = Builders<BsonDocument>.Filter.Eq("IdUsuario", IdUsuario);
+                return coleccion.Find(filtro).FirstOrDefault()["ProductosDeseados"].AsBsonArray.Select(p => p.AsInt32).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-
-        public void EliminarDeLista(string IdUsuario,int id_producto)
+        //no funciona
+        public void EliminarDeLista(string IdUsuario, int id_producto)
         {
             var coleccion = database.GetCollection<BsonDocument>("ListaDeseos");
             var filtro = Builders<BsonDocument>.Filter.Eq("IdUsuario", IdUsuario);
-            var resultado=coleccion.Find(filtro).FirstOrDefault();
+            var resultado = coleccion.Find(filtro).FirstOrDefault();
             var filtroEliminar = Builders<BsonDocument>.Filter.Eq("ProductosDeseados", id_producto);
             var eliminar = Builders<BsonDocument>.Update.PullFilter("resultado", filtroEliminar);
             //coleccion.Find(filtro).FirstOrDefault()["ProductosDeseados"].AsBsonArray.Select(p => p.AsInt32).ToList();
+        }
+
+
+        public void AgregarCalificacion(int id_producto, int puntuacion, string comentario, string nombre_usuario)
+        {
+            var coleccion = database.GetCollection<BsonDocument>("Calificacion");
+            var filtro = Builders<BsonDocument>.Filter.Eq("IdProducto", id_producto);
+            //obtenemos el resultado
+            var resultado = coleccion.Find(filtro).FirstOrDefault();
+            if (resultado == null)
+            {
+                var documento = new BsonDocument
+                {
+                    { "IdProducto", id_producto },
+                    { "Calificaciones", new BsonArray
+                        {
+                              new BsonDocument {
+                                  {"Puntuacion",puntuacion },
+                                  {"Comentario",comentario },
+                                  {"NombreUsuario",nombre_usuario }
+                              }
+                        }
+                    }
+                };
+                coleccion.InsertOne(documento);
+            }
+            else
+            {
+
+                var documento = new BsonDocument {
+                                  {"Puntuacion",puntuacion },
+                                  {"Comentario",comentario },
+                                  {"NombreUsuario",nombre_usuario }
+                              };
+                var updateMl = Builders<BsonDocument>.Update.AddToSet("Calificaciones", documento);
+                coleccion.UpdateManyAsync(filtro, updateMl, new UpdateOptions { IsUpsert = true });
+            }
+        }
+
+        public List<EN.Calificaciones> CargarCalificaion(int id_producto)
+        {
+            try
+            {
+                var coleccion = database.GetCollection<BsonDocument>("Calificacion");
+                var filtro = Builders<BsonDocument>.Filter.Eq("IdProducto", id_producto);
+                var resultado = coleccion.Find(filtro).FirstOrDefault()["Calificaciones"].AsBsonArray;
+                List<EN.Calificaciones> listado = new List<EN.Calificaciones>();
+                foreach (var item in resultado)
+                {
+                    EN.Calificaciones c = new EN.Calificaciones();
+                    c.NombreUsuario = item["NombreUsuario"].AsString;
+                    c.Puntuacion = item["Puntuacion"].AsInt32;
+                    c.Comentario = item["Comentario"].AsString;
+                    listado.Add(c);
+                }
+                return listado;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }            
         }
     }
 }

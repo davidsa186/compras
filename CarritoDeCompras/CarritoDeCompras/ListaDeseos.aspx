@@ -43,11 +43,10 @@
                         div += '</div></div></div>';
                         $("#index").append(div);
                     }
-
-
                 },
-                error: function (response) {
-                    //Mostrar un mensaje de error
+                error: function (xhr, status, error) {
+                    var err = eval("(" + xhr.responseText + ")");
+                    alert(err.Message);
                 }
             });
             $("#index").on("click", ".del", function () {

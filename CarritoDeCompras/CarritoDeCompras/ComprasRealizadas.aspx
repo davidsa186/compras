@@ -16,7 +16,7 @@
                         <asp:BoundField HeaderText="Total" DataField="Total"></asp:BoundField>
                         <asp:TemplateField HeaderText="Ver detalles">
                             <ItemTemplate>
-                                <asp:LinkButton ID="LinkButton2" runat="server" CssClass="glyphicon glyphicon-remove-sign" CommandArgument='<%# Eval("Id_Factura") %>' OnCommand="LinkButton2_Command"></asp:LinkButton>
+                                <asp:LinkButton ID="LinkButton2" runat="server" CssClass="glyphicon glyphicon-search" CommandArgument='<%# Eval("Id_Factura") %>' OnCommand="LinkButton2_Command"></asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

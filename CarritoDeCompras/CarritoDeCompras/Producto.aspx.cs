@@ -42,5 +42,20 @@ namespace CarritoDeCompras
                 return false;
             }
         }
+
+        [System.Web.Services.WebMethod]
+        public static List<EN.Calificaciones> GetComentarios()
+        {
+            try
+            {
+                int Id_Producto = int.Parse(id);
+                CT.Mongo controladora = new CT.Mongo();
+                return controladora.CargarCalificaion(Id_Producto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }            
+        }
     }
 }

@@ -94,6 +94,8 @@
                 dataType: "json",
                 success: function (response) {
                     if (response.d != -1) {
+                        sessionStorage.setItem("ItemsCarrito", JSON.stringify(new Array()));
+                        $("#carrito").text(arrayItems.length);
                         console.log(response.d);
                         window.location.href = "FacturaCompra.aspx?id=" + response.d;
                     } else {

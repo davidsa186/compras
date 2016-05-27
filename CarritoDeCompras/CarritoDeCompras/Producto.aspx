@@ -23,64 +23,14 @@
                 </button>
             </div>
             <div class="ratings">
-                <p class="pull-right">3 reviews</p>
-                <p>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    4.0 stars
-                </p>
+                <p class="pull-right" id="numero_comentarios"></p>
+                <p id="estrellas"></p>
             </div>
         </div>
 
         <div class="well">
-            <%--<div class="text-right">
-                <a class="btn btn-success">Leave a Review</a>
-            </div>
-
-            <hr>--%>
-            <div class="row">
-                <div class="col-md-12">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    Anonymous
-                    <span class="pull-right">10 days ago</span>
-                    <p>This product was great in terms of quality. I would definitely buy another!</p>
-                </div>
-            </div>
-
-            <hr>
-            <div class="row">
-                <div class="col-md-12">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    Anonymous
-                    <span class="pull-right">12 days ago</span>
-                    <p>I've alredy ordered another one!</p>
-                </div>
-            </div>
-
-            <hr>
-            <div class="row">
-                <div class="col-md-12">
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star"></span>
-                    <span class="glyphicon glyphicon-star-empty"></span>
-                    Anonymous
-                    <span class="pull-right">15 days ago</span>
-                    <p>I've seen some better than this, but not at this price. I definitely recommend this item.</p>
-                </div>
-            </div>
+            <h4>Calificaciones</h4>
+            <hr />            
         </div>
     </div>
     <p hidden="hidden" id="id_producto"></p>
@@ -107,6 +57,49 @@
                     //Mostrar un mensaje de error
                 }
             });
+         
+            $.ajax({
+                type: "POST",
+                url: "Producto.aspx/GetComentarios",
+                data: {},
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $("#numero_comentarios").text(response.d.length + " comentarios");
+                    var promedio = 0;
+                    for (var i = 0; i < response.d.length; i++) {                        
+                        promedio += response.d[i].Puntuacion;
+                        var div = '<div class="row"><div class="col-md-12">';
+                        var full = response.d[i].Puntuacion;
+                        var empty = 5 - full;
+                        for (var j = 0; j < full; j++) {
+                            div += '<span class="glyphicon glyphicon-star"></span>';
+                        }
+                        for (var j = 0; j < empty; j++) {
+                            div += '<span class="glyphicon glyphicon-star-empty"></span>';
+                        }
+                        div += '<span>' + response.d[i].NombreUsuario + '</span>';
+                        div += '<p>' + response.d[i].Comentario + '</p>';
+                        div += '</div></div><hr />';
+                        $(".well").append(div);
+                    }
+                    promedio = Math.round(promedio / response.d.length);
+                    var vacio = 5 - promedio;
+                    var estrellas = '';
+                    for (var j = 0; j < promedio; j++) {
+                        estrellas += '<span class="glyphicon glyphicon-star"></span>';
+                    }
+                    for (var j = 0; j < vacio; j++) {
+                        estrellas += '<span class="glyphicon glyphicon-star-empty"></span>';
+                    }
+                    $("#estrellas").append(estrellas);
+                    $("#estrellas").append('<span>' + promedio + '</span>');
+                },
+                error: function (xhr, status, error) {
+                    var err = eval("(" + xhr.responseText + ")");
+                    alert(err.Message);
+                }
+            });
         });
 
         $("#btn_carrito").click(function () {
@@ -124,7 +117,7 @@
             $("#carrito").text(arrayItems.length);
         });
 
-        $("#btn_lista").click(function () {            
+        $("#btn_lista").click(function () {
             $.ajax({
                 type: "POST",
                 url: "Producto.aspx/AgregarALista",

@@ -27,7 +27,7 @@ namespace CarritoDeCompras
         }
 
         [System.Web.Services.WebMethod]
-        public static bool Insertar(int ciudad, int cedula, string direccion, string nombre, int[] arrayTelefonos)
+        public static bool Insertar(int ciudad, long cedula, string direccion, string nombre, long[] arrayTelefonos)
         {
             EN.Cliente cliente = new EN.Cliente();
             cliente.Id_Cliente = userID;

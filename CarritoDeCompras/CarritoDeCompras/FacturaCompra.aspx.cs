@@ -16,6 +16,8 @@ namespace CarritoDeCompras
         {
             string id = Request.QueryString["id"];
             id_factura = int.Parse(id.ToString());
+            panel_grid.Visible = true;
+            panel_comentarios.Visible = false;
 
             if (!IsPostBack)
             {
@@ -63,17 +65,19 @@ namespace CarritoDeCompras
             panel_grid.Visible = false;
             panel_comentarios.Visible = true;            
         }
-
-        protected void btnEnviar_Click(object sender, EventArgs e)
+        [System.Web.Services.WebMethod]
+        public static void btnEnviar_Click(int id_producto, string comentario, int puntuacion)
         {
             try
             {
-                string script = "alert('Se ingresaron tus comentarios');";
-                ClientScript.RegisterStartupScript(this.GetType(), "alerta", script, true);
+                var nombre_usuario = HttpContext.Current.User.Identity.Name;
+                CT.Mongo controlMongo = new CT.Mongo();
+                controlMongo.AgregarCalificacion(id_producto,puntuacion,comentario,nombre_usuario);
+
             }
             catch (Exception ex)
             {
-                
+                throw ex;
             }
         }
 

@@ -19,10 +19,17 @@ namespace CarritoDeCompras
         [System.Web.Services.WebMethod]
         public static List<EN.Producto> CargarListaDeseos()
         {
-            CT.Mongo controlMongo = new CT.Mongo();            
-            List<int> productos = controlMongo.CargarListaDeseos(HttpContext.Current.User.Identity.Name);
-            CT.Producto controlProducto = new CT.Producto();
-            return controlProducto.GetProductosLista(productos);
+            try
+            {
+                CT.Mongo controlMongo = new CT.Mongo();
+                List<int> productos = controlMongo.CargarListaDeseos(HttpContext.Current.User.Identity.Name);
+                CT.Producto controlProducto = new CT.Producto();
+                return controlProducto.GetProductosLista(productos);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
         
 

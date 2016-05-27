@@ -107,7 +107,7 @@
 
         $("#btn_telefono").click(function () {
             var input = '<div class="col-lg-10"><input type="number" class="form-control in_telefono"></input></div>';
-            var boton = '<div class="col-lg-2"><button type="button" class="btn btn-default del"><i class="fa fa-remove"></i></button></div>';
+            var boton = '<div class="col-lg-2"><button type="button" class="btn btn-default del"><span class="glyphicon glyphicon-remove"></span></button></div>';
             $("#div_telefonos").append('<div class="row"><br>' + input + boton + '</div>');
         });
 

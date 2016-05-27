@@ -11,8 +11,8 @@ namespace upb.tabd.entidades
         public Guid Id_Cliente { get; set; }
         public string Nombre { get; set; }
         public string Direccion { get; set; }
-        public int Cedula { get; set; }
+        public long Cedula { get; set; }
         public int Id_Ciudad { get; set; }
-        public int[] Array_Telefonos { get; set; }
+        public long[] Array_Telefonos { get; set; }
     }
 }
