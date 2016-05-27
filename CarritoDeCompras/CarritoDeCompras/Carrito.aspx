@@ -110,6 +110,10 @@
                 });
                 $("#costo_total").text("Precio total: $" + precioTotal);
             }
+
+            $("#index").on("change", ".cantidad", function () {
+                calcularTotal();                
+            });
         }
     </script>
 </asp:Content>
