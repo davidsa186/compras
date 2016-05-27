@@ -1,10 +1,17 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Compra.aspx.cs" Inherits="CarritoDeCompras.Compra" EnableEventValidation="false" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="FacturaCompra.aspx.cs" Inherits="CarritoDeCompras.Compra" EnableEventValidation="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+        <title>Factura de Compra</title>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="col-lg-9">
+   
+     <div class="col-lg-9">
+
+        <h3>Factura de Compra</h3>
+
+        <hr />
         <div class="form-group">
             <asp:Panel ID="panel_grid" runat="server">
                 <asp:GridView ID="gridFactura" runat="server" AutoGenerateColumns="false" CssClass="table table-hover">
@@ -19,6 +26,14 @@
                         </asp:TemplateField>
                     </Columns>
                 </asp:GridView>
+                    <span><strong>Total Neto: </strong></span>
+                    <asp:Label ID="LblTotalNeto" runat="server"></asp:Label>
+                    <br />
+                    <span><strong>Descuento Aplicado: </strong></span>
+                    <asp:Label ID="lblDescuento" runat="server"></asp:Label>
+                    <br />
+                    <span><strong>Total Pagado: </strong></span>
+                    <asp:Label ID="lblTotal" runat="server"></asp:Label>
             </asp:Panel>
             <asp:Panel ID="panel_comentarios" runat="server" Visible="false">
                 <div class="form-group">

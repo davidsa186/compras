@@ -55,5 +55,30 @@ namespace upb.tabd.controladora
                 throw ex;
             }
         }
+
+        public EN.Factura ConsultarFactura(int id_factura) {
+            BR.Factura consulta = db.Factura.Where(x => x.Id_Factura == id_factura).FirstOrDefault();
+
+            EN.Factura factura = new EN.Factura();
+            factura.Descuento = consulta.Descuento;
+            factura.Total = consulta.Total;
+            factura.Total_Neto = consulta.Total_Neto;
+            factura.Id_Factura = consulta.Id_Factura;
+            factura.Fecha = consulta.Fecha;
+
+            return factura;
+        }
+
+        public List<EN.Factura> ConsultarFacturasCliente(Guid idCliente)
+        {
+            List<EN.Factura> resultado = new List<EN.Factura>();
+            var listado = db.Factura.Where(x => x.Id_Cliente == idCliente).ToList();
+            foreach (var item in listado)
+            {
+                EN.Factura f = ConsultarFactura(item.Id_Factura);
+                resultado.Add(f);
+            }
+            return resultado;
+        }
     }
 }

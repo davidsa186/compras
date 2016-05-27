@@ -104,7 +104,8 @@
   <ItemGroup>
     <Content Include="Busqueda.aspx" />
     <Content Include="Carrito.aspx" />
-    <Content Include="Compra.aspx" />
+    <Content Include="FacturaCompra.aspx" />
+    <Content Include="ComprasRealizadas.aspx" />
     <Content Include="css\login.css" />
     <Content Include="css\Search.css" />
     <Content Include="images\favicon.png" />
@@ -157,12 +158,19 @@
     <Compile Include="Carrito.aspx.designer.cs">
       <DependentUpon>Carrito.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Compra.aspx.cs">
-      <DependentUpon>Compra.aspx</DependentUpon>
+    <Compile Include="FacturaCompra.aspx.cs">
+      <DependentUpon>FacturaCompra.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Compra.aspx.designer.cs">
-      <DependentUpon>Compra.aspx</DependentUpon>
+    <Compile Include="FacturaCompra.aspx.designer.cs">
+      <DependentUpon>FacturaCompra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ComprasRealizadas.aspx.cs">
+      <DependentUpon>ComprasRealizadas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ComprasRealizadas.aspx.designer.cs">
+      <DependentUpon>ComprasRealizadas.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>

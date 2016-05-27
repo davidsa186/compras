@@ -1,6 +1,8 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.Master" AutoEventWireup="true" CodeBehind="Carrito.aspx.cs" Inherits="CarritoDeCompras.Carrito" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+        <title>Carrito de Compras</title>
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -93,7 +95,7 @@
                 success: function (response) {
                     if (response.d != -1) {
                         console.log(response.d);
-                        window.location.href = "Compra.aspx?id=" + response.d;
+                        window.location.href = "FacturaCompra.aspx?id=" + response.d;
                     } else {
                         alert("Debe iniciar sesión!");
                     }
