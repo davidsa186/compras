@@ -102,9 +102,13 @@
             });
 
             function calcularTotal() {
-                var precioTotal = 0;
+                var precioTotal = 0;                
                 $("#index").find(".producto").each(function (index) {
                     var cantidad = $(this).find(".cantidad").val();
+                    if (cantidad < 1) {
+                        cantidad = 1;
+                        $(this).find(".cantidad").val("1");
+                    }
                     var precio = parseInt($(this).find(".precio").text().substring(1));
                     precioTotal += precio * cantidad;
                 });
