@@ -77,19 +77,16 @@ namespace upb.tabd.controladora
                 throw ex;
             }
         }
-
-        //No funciona
+                
         public void EliminarDeLista(string IdUsuario, int id_producto)
         {
             var coleccion = database.GetCollection<BsonDocument>("ListaDeseos");
             var filtro = Builders<BsonDocument>.Filter.Eq("IdUsuario", IdUsuario);
-            var resultado = coleccion.Find(filtro).FirstOrDefault();
-            var filtroEliminar = Builders<BsonDocument>.Filter.Eq("ProductosDeseados", id_producto);
-            var eliminar = Builders<BsonDocument>.Update.PullFilter("resultado", filtroEliminar);
-            //coleccion.Find(filtro).FirstOrDefault()["ProductosDeseados"].AsBsonArray.Select(p => p.AsInt32).ToList();
+            var resultado = coleccion.Find(filtro).FirstOrDefault();            
+            var updateMl = Builders<BsonDocument>.Update.Pull("ProductosDeseados", id_producto);
+            coleccion.UpdateManyAsync(filtro, updateMl, new UpdateOptions { IsUpsert = true });
         }
-
-
+        
         public void AgregarCalificacion(int id_producto, int puntuacion, string comentario, string nombre_usuario)
         {
             var coleccion = database.GetCollection<BsonDocument>("Calificacion");

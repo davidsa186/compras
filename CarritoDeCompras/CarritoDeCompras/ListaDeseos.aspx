@@ -46,23 +46,24 @@
                     var err = eval("(" + xhr.responseText + ")");
                     alert(err.Message);
                 }
-            });
-            $("#index").on("click", ".del", function () {
-                $(this).closest(".producto").remove();
-                var id = $(this).find(".id_producto").text();
-                $.ajax({
-                    type: "POST",
-                    url: 'ListaDeseos.aspx/EliminardeLista',
-                    data: '{id_producto: "' + id + '"}',
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (response) {
+            });            
+        });
 
-                    },
-                    error: function (response) {
-                        //Mostrar un mensaje de error
-                    }
-                });
+        $("#index").on("click", ".del", function () {
+            $(this).closest(".producto").remove();
+            var id = $(this).find(".id_producto").text();
+            $.ajax({
+                type: "POST",
+                url: 'ListaDeseos.aspx/EliminardeLista',
+                data: '{id_producto: "' + id + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    alert("Producto eliminado");
+                },
+                error: function (response) {
+                    //Mostrar un mensaje de error
+                }
             });
         });
     </script>
